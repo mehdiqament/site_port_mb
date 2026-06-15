@@ -180,7 +180,7 @@ export default function GpsNmeaDetail() {
             <div id="demo">
               <div style={{ width: "100%", aspectRatio: "16/9", marginBottom: "0", background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <iframe
-                  src="https://res.cloudinary.com/dk2iacpoa/video/upload/v1781564272/rec_c_mqebm0.mp4"
+                  src="https://player.cloudinary.com/embed/?cloud_name=dk2iacpoa&public_id=rec_c_mqebm0&profile=cld-default"
                   style={{ width: "100%", height: "100%", border: "none" }}
                   allow="autoplay; fullscreen"
                   allowFullScreen
