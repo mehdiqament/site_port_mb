@@ -127,4 +127,30 @@ export default function Competences() {
 
   return (
     <section style={{ padding: "7rem 2rem" }}>
-      <div style={{ maxWidth: "68rem
+      <div style={{ maxWidth: "68rem", margin: "0 auto" }}>
+        <SectionHeader label="Stack technique" title="Compétences" />
+
+        {/* 1. Compétences Techniques */}
+        <div>
+          {sortedTechSkills.map((skill, i) => renderSkillRow(skill, i))}
+        </div>
+
+        {/* 2. Soft Skills */}
+        <div style={{ marginTop: "4rem", marginBottom: "3rem" }}>
+          <SectionHeader label="Humain & Méthode" title="Soft Skills" />
+        </div>
+        <div>
+          {softSkills.map((skill, i) => renderSoftSkillRow(skill, i, sortedTechSkills.length * 45))}
+        </div>
+
+        {/* 3. Langues */}
+        <div style={{ marginTop: "4rem", marginBottom: "3rem" }}>
+          <SectionHeader label="Langues" title="Langues" />
+        </div>
+        <div>
+          {langues.map((langue, i) => renderSkillRow(langue, i, (sortedTechSkills.length + softSkills.length) * 45))}
+        </div>
+      </div>
+    </section>
+  )
+}
