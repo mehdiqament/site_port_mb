@@ -349,7 +349,7 @@ export default function Alternance() {
               <InfoCard label="Durée recherchée" value="12 à 24 mois" />
               <InfoCard label="Domaine" value="Dév. logiciel · Données & IA" />
               <InfoCard label="Localisation" value="Toulouse & région" />
-              <InfoCard label="Disponibilité" value="Dès avril 2026" />
+              <InfoCard label="Disponibilité" value="Dès avril 2027" />
             </div>
           </FadeUp>
         </div>
