@@ -1,7 +1,7 @@
 import { Link } from "react-router"
 import { ArrowUpRight } from "lucide-react"
 import { FadeUp, SectionHeader } from "../app/shared"
-import { useTranslation } from "./useTranslation" // Ajuste le chemin selon ton projet
+import { useTranslation } from "../app/useTranslation"
 
 const TAG_STYLE: React.CSSProperties = {
   fontFamily: "'JetBrains Mono', monospace",
