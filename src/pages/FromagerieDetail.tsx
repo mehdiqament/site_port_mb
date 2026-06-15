@@ -274,22 +274,34 @@ export default function FromagerieDetail() {
   </SectionBlock>
 </FadeUp>
 
-      {/* Section - Démonstration (Pour le projet Fromage) */}
+     {/* Section - Démonstration */}
 <FadeUp delay={0}>
   <SectionBlock label="Démonstration">
     <div id="demo">
-      <div style={{ width: "100%", aspectRatio: "16/9", marginBottom: "0", background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <video
-          src="https://player.cloudinary.com/embed/?cloud_name=dk2iacpoa&public_id=rec_java_bj1zz2"
-          poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f3f4f6'/></svg>"
-          controls
-          preload="metadata"
-          style={{ width: "100%", height: "100%", objectFit: "contain", background: "#f3f4f6" }}
-        />
+      <div style={{ width: "100%", aspectRatio: "16/9", marginBottom: "0", background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
+        
+        {/* On utilise une astuce simple : un bouton gris qui charge la vidéo uniquement au clic */}
+        <div 
+          onClick={(e) => {
+            const container = e.currentTarget;
+            container.innerHTML = `<video src="https://res.cloudinary.com/dk2iacpoa/video/upload/v1781564272/rec_c_mqebm0.mp4" autoplay controls style="width: 100%; height: 100%; object-fit: contain; background: #f3f4f6;" />`;
+          }}
+          style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", background: "#f3f4f6" }}
+        >
+          {/* Icône Play épurée au centre du fond gris */}
+          <div style={{ width: "50px", height: "50px", borderRadius: "50%", background: "rgba(0,0,0,0.05)", display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.2s" }}
+               onMouseEnter={(e) => e.currentTarget.style.background = "rgba(59,130,246,0.1)"}
+               onMouseLeave={(e) => e.currentTarget.style.background = "rgba(0,0,0,0.05)"}>
+            <svg width="16" height="18" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: "3px" }}>
+              <path d="M1 1.5V18.5L14.5 10L1 1.5Z" fill="#374151" stroke="#374151" strokeWidth="2" strokeLinejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
       </div>
       <div style={{ background: "#f9fafb", border: "0.5px solid rgba(0,0,0,0.07)", borderTop: "none", padding: "1.25rem 1.5rem" }}>
         <p style={{ ...SANS, fontSize: "0.9375rem", color: "#4b5563", margin: 0, lineHeight: "1.6" }}>
-          Démonstration de l'interface de commande de fromage en action : gestion du panier, calcul des frais de port et validation du formulaire client.
+          Visuel du parseur en action. Le programme réalise une validation stricte : toute trame copiée du web incomplète ou ayant un checksum erroné provoque un échec de lecture. Une fois les trames valides détectées, l'algorithme extrait et convertit avec succès les coordonnées géographiques, illustré ici par le décodage précis des positions de <span style={{ color: "#0D0D0D", fontWeight: 500 }}>Paris</span> et <span style={{ color: "#0D0D0D", fontWeight: 500 }}>New York</span>.
         </p>
       </div>
     </div>
