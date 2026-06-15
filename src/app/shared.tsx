@@ -375,7 +375,7 @@ export const GLOBAL_CSS = `
     border-bottom:0.5px solid rgba(0,0,0,0.05);
   }
 
-  @media (max-width:640px) {
+  @media (max-width:680px) {
     .hero-title { font-size:clamp(4rem,22vw,10rem) !important; }
     .hide-sm { display:none !important; }
     .contacts-row { flex-direction:column; }
