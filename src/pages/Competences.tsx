@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { FadeUp, SectionHeader, useSkills } from "../app/shared"
-import { useTranslation } from "./useTranslation" // Ajuste le chemin si useTranslation est dans le même dossier
+import { useTranslation } from "../app/useTranslation"
 
 // Animates a progress bar from 0 → target when it enters the viewport
 function AnimatedBar({ pct }: { pct: number }) {
