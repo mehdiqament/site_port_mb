@@ -1,5 +1,6 @@
 import { Mail, Github, MessageSquare } from "lucide-react"
 import { FadeUp, SectionHeader, contacts } from "../app/shared"
+import { useTranslation } from "./useTranslation" // Ajuste le chemin si nécessaire
 
 const ICONS: Record<string, React.ReactNode> = {
   Email: <Mail size={15} strokeWidth={1.5} />,
@@ -8,10 +9,13 @@ const ICONS: Record<string, React.ReactNode> = {
 }
 
 export default function Contact() {
+  const { t } = useTranslation()
+
   return (
     <section style={{ padding: "7rem 2rem" }}>
       <div style={{ maxWidth: "68rem", margin: "0 auto" }}>
-        <SectionHeader label="Me rejoindre" title="Contact" />
+        {/* Titres traduits dynamiquement */}
+        <SectionHeader label={t("contact.label")} title={t("contact.title")} />
 
         <FadeUp delay={80}>
           <div className="contacts-row" style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
