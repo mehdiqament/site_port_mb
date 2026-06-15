@@ -4,7 +4,6 @@ import { GLOBAL_CSS } from "./shared"
 import { useTranslation } from "./useTranslation"
 import { useLanguage } from "./LanguageContext"
 
-// ─── Typewriter (loading screen only) ────────────────────────────────────────
 function useTypewriter(text: string, speed = 95, startDelay = 700) {
   const [displayed, setDisplayed] = useState("")
   const [done, setDone] = useState(false)
@@ -28,7 +27,6 @@ function useTypewriter(text: string, speed = 95, startDelay = 700) {
   return { displayed, done }
 }
 
-// ─── Nav link wrapper ─────────────────────────────────────────────────────────
 function NavItem({ to, label, prefix }: { to: string; label: string; prefix?: boolean }) {
   return (
     <NavLink
@@ -43,7 +41,6 @@ function NavItem({ to, label, prefix }: { to: string; label: string; prefix?: bo
   )
 }
 
-// ─── Language switch button ──────────────────────────────────────────────────
 function LangSwitch() {
   const { lang, toggleLang } = useLanguage()
   return (
@@ -81,7 +78,6 @@ export default function Layout() {
   const location = useLocation()
   const { t } = useTranslation()
 
-  // Loading screen: only on first visit per session
   const [loadPhase, setLoadPhase] = useState<"loading" | "exiting" | "done">(() => {
     if (typeof sessionStorage !== "undefined" && sessionStorage.getItem("mq-loaded")) {
       return "done"
@@ -92,7 +88,7 @@ export default function Layout() {
   const { displayed, done } = useTypewriter(
     "Mehdi",
     95,
-    loadPhase === "loading" ? 700 : 99999 // skip animation if already loaded
+    loadPhase === "loading" ? 700 : 99999
   )
 
   const handleEnter = () => {
@@ -101,11 +97,8 @@ export default function Layout() {
     setTimeout(() => setLoadPhase("done"), 850)
   }
 
-  // Page transition key — fade content on route change
   const [pageKey, setPageKey] = useState(location.pathname)
   const [pageVisible, setPageVisible] = useState(true)
-
-  // Mobile menu open/close state
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -127,7 +120,6 @@ export default function Layout() {
     <>
       <style>{GLOBAL_CSS}</style>
 
-      {/* ── Loading Screen ───────────────────────────────────────────── */}
       {loadPhase !== "done" && (
         <div
           style={{
@@ -144,7 +136,6 @@ export default function Layout() {
             transition: "opacity 0.85s cubic-bezier(0.16,1,0.3,1)",
           }}
         >
-          {/* Subtle grid */}
           <div
             style={{
               position: "absolute",
@@ -156,7 +147,6 @@ export default function Layout() {
             }}
           />
 
-          {/* Typewriter name */}
           <div
             style={{
               fontFamily: "'Inter', sans-serif",
@@ -185,7 +175,6 @@ export default function Layout() {
             />
           </div>
 
-          {/* Enter button */}
           <button
             onClick={handleEnter}
             style={{
@@ -217,7 +206,6 @@ export default function Layout() {
         </div>
       )}
 
-      {/* ── Shell ────────────────────────────────────────────────────── */}
       <div
         style={{
           minHeight: "100vh",
@@ -229,7 +217,6 @@ export default function Layout() {
           visibility: loadPhase === "loading" ? "hidden" : "visible",
         }}
       >
-        {/* Nav */}
         <nav
           style={{
             position: "sticky",
@@ -275,7 +262,7 @@ export default function Layout() {
               <LangSwitch />
             </div>
 
-            <div className="show-sm" style={{ display: "none", alignItems: "center", gap: "0.625rem" }}>
+            <div className="show-sm" style={{ alignItems: "center", gap: "0.625rem" }}>
               <LangSwitch />
               <button
                 className={`hamburger-btn${menuOpen ? " is-open" : ""}`}
@@ -288,7 +275,6 @@ export default function Layout() {
             </div>
           </div>
 
-          {/* Mobile dropdown menu */}
           <div className={`mobile-menu${menuOpen ? " is-open" : ""}`}>
             <NavItem to="/" label={t("nav.home")} />
             <NavItem to="/competences" label={t("nav.competences")} />
@@ -299,7 +285,6 @@ export default function Layout() {
           </div>
         </nav>
 
-        {/* Page content with cross-fade */}
         <main
           key={pageKey}
           style={{
@@ -311,7 +296,6 @@ export default function Layout() {
           <Outlet />
         </main>
 
-        {/* Footer */}
         <footer
           style={{
             borderTop: "0.5px solid rgba(0,0,0,0.07)",
