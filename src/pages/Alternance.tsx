@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { X, Download, Send, Lock, Mail } from "lucide-react"
 import { FadeUp, SectionHeader } from "../app/shared"
-import { useTranslation } from "./useTranslation" // Ajuste le chemin si nécessaire
+import { useTranslation } from "../app/useTranslation"
 import cvUrl from "../imports/CV_Bouin_Mehdi.pdf"
 
 // ─── CV Modal ─────────────────────────────────────────────────────────────────
