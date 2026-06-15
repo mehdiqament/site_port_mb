@@ -69,6 +69,13 @@ export default function Layout() {
   const [pageKey, setPageKey] = useState(location.pathname)
   const [pageVisible, setPageVisible] = useState(true)
 
+  // Mobile menu open/close state
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [location.pathname])
+
   useEffect(() => {
     if (location.pathname !== pageKey) {
       setPageVisible(false)
@@ -230,6 +237,25 @@ export default function Layout() {
               <NavItem to="/alternance" label="Alternance" />
               <NavItem to="/contact" label="Contact" />
             </div>
+
+            <button
+              className={`hamburger-btn${menuOpen ? " is-open" : ""}`}
+              aria-label="Menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+            >
+              <span />
+            </button>
+          </div>
+
+          {/* Mobile dropdown menu */}
+          <div className={`mobile-menu${menuOpen ? " is-open" : ""}`}>
+            <NavItem to="/" label="Accueil" />
+            <NavItem to="/competences" label="Compétences" />
+            <NavItem to="/parcours" label="Parcours" />
+            <NavItem to="/projets" label="Projets" prefix />
+            <NavItem to="/alternance" label="Alternance" />
+            <NavItem to="/contact" label="Contact" />
           </div>
         </nav>
 
