@@ -1,9 +1,12 @@
 import { Link } from "react-router"
 import { FadeUp, CODE_TEXTURE } from "../app/shared"
+import { useTranslation } from "./useTranslation" // Ajuste le chemin selon ta structure
 
 const HERO_ENTRY = 120 // ms after page mount before fade-ups start
 
 export default function Home() {
+  const { t } = useTranslation()
+
   return (
     <section
       style={{
@@ -56,7 +59,7 @@ export default function Home() {
               marginBottom: "1.75rem",
             }}
           >
-            portfolio · 2025–2026
+            {t("home.subtitle")}
           </div>
         </FadeUp>
 
@@ -88,8 +91,8 @@ export default function Home() {
               letterSpacing: "0.01em",
             }}
           >
-            Étudiant BUT Informatique ·{" "}
-            <span style={{ color: "#3B82F6", fontWeight: 500 }}>Données & IA</span>
+            {t("home.role.prefix")}{" "}
+            <span style={{ color: "#3B82F6", fontWeight: 500 }}>{t("home.role.specialty")}</span>
           </div>
         </FadeUp>
 
@@ -104,17 +107,17 @@ export default function Home() {
               margin: "0 0 3.25rem",
             }}
           >
-            Curieux et touche-à-tout, je construis mes compétences en data et développement.
+            {t("home.description")}
           </p>
         </FadeUp>
 
         <FadeUp delay={320} entryDelay={HERO_ENTRY}>
           <div style={{ display: "flex", gap: "0.875rem", flexWrap: "wrap" }}>
             <Link to="/contact" className="btn-primary">
-              Me contacter
+              {t("home.buttons.contact")}
             </Link>
             <Link to="/competences" className="btn-ghost">
-              Voir mes compétences
+              {t("home.buttons.skills")}
             </Link>
           </div>
         </FadeUp>
