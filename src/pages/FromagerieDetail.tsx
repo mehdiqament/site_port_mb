@@ -31,6 +31,17 @@ const techStack = [
   { name: "JSON", abbr: "{}" },
 ]
 
+const subtitles = [
+  { time: 0, text: "Lancement de l'application Fromagerie." },
+  { time: 4, text: "Navigation dans le catalogue de fromages." },
+  { time: 9, text: "Filtrage par type de lait et format." },
+  { time: 15, text: "Ajout de produits au panier." },
+  { time: 21, text: "Vérification des limites de stock." },
+  { time: 27, text: "Saisie des informations client." },
+  { time: 33, text: "Génération de la facture récapitulative." },
+  { time: 38, text: "Option d'impression de la facture." },
+]
+
 export default function FromagerieDetail() {
   return (
     <article style={{ padding: "5rem 2rem 7rem" }}>
@@ -100,10 +111,39 @@ export default function FromagerieDetail() {
           </div>
         </FadeUp>
 
-        {/* Voir le code */}
+        {/* Boutons */}
         <FadeUp delay={120} entryDelay={60}>
-          <div style={{ marginBottom: "3rem" }}>
+          <div style={{ display: "flex", gap: "0.75rem", marginBottom: "3rem", flexWrap: "wrap" }}>
             <CodeButton href="https://github.com/mehdiqament/sae-vente-fromages" />
+            
+              href="#demo"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.8125rem",
+                fontWeight: 500,
+                color: "#374151",
+                textDecoration: "none",
+                border: "0.5px solid rgba(0,0,0,0.18)",
+                padding: "0.55rem 1.125rem",
+                letterSpacing: "0.02em",
+                transition: "border-color 0.2s, color 0.2s, box-shadow 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "#3B82F6"
+                e.currentTarget.style.color = "#3B82F6"
+                e.currentTarget.style.boxShadow = "0 2px 12px rgba(59,130,246,0.1)"
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "rgba(0,0,0,0.18)"
+                e.currentTarget.style.color = "#374151"
+                e.currentTarget.style.boxShadow = "none"
+              }}
+            >
+              ▶ Voir le test
+            </a>
           </div>
         </FadeUp>
 
@@ -113,15 +153,7 @@ export default function FromagerieDetail() {
         {/* Section - Le projet */}
         <FadeUp delay={0}>
           <SectionBlock label="Le projet">
-            <p
-              style={{
-                ...SANS,
-                fontSize: "0.9375rem",
-                color: "#4b5563",
-                lineHeight: "1.8",
-                margin: 0,
-              }}
-            >
+            <p style={{ ...SANS, fontSize: "0.9375rem", color: "#4b5563", lineHeight: "1.8", margin: 0 }}>
               Réalisée dans le cadre d'une SAÉ (Situation d'Apprentissage et d'Évaluation), cette application simule une boutique en ligne de fromages. Développée entièrement en Java avec l'interface graphique Swing, elle repose sur une architecture multi-fenêtres utilisant des{" "}
               <span style={{ color: "#0D0D0D", fontWeight: 500 }}>JDialog</span> imbriquées pour chaque étape du parcours client - navigation du catalogue, gestion du panier, saisie des informations et édition de la facture.
             </p>
@@ -145,16 +177,7 @@ export default function FromagerieDetail() {
                     lineHeight: "1.65",
                   }}
                 >
-                  <span
-                    style={{
-                      width: "5px",
-                      height: "5px",
-                      borderRadius: "50%",
-                      background: "#3B82F6",
-                      flexShrink: 0,
-                      marginTop: "0.55em",
-                    }}
-                  />
+                  <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: "#3B82F6", flexShrink: 0, marginTop: "0.55em" }} />
                   {f}
                 </li>
               ))}
@@ -167,11 +190,7 @@ export default function FromagerieDetail() {
           <SectionBlock label="Stack technique">
             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
               {techStack.map((s) => (
-                <div
-                  key={s.name}
-                  className="skill-pill-lg"
-                  style={{ fontFamily: "'Inter', sans-serif" }}
-                >
+                <div key={s.name} className="skill-pill-lg" style={{ fontFamily: "'Inter', sans-serif" }}>
                   <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8125rem", color: "#3B82F6", fontWeight: 300, minWidth: "1.5rem" }}>
                     {s.abbr}
                   </span>
@@ -182,12 +201,57 @@ export default function FromagerieDetail() {
           </SectionBlock>
         </FadeUp>
 
+        {/* Divider */}
+        <div style={{ height: "0.5px", background: "rgba(0,0,0,0.07)", marginBottom: "4rem" }} />
+
+        {/* Section - Démonstration */}
+        <FadeUp delay={0}>
+          <SectionBlock label="Démonstration">
+            <div id="demo">
+              {/* Vidéo */}
+              <div style={{ width: "100%", aspectRatio: "16/9", marginBottom: "0" }}>
+                <iframe
+                  id="fromagerie-video"
+                  src="https://player.cloudinary.com/embed/?cloud_name=dk2iacpoa&public_id=rec_java_bj1zz2&autoplay=false"
+                  style={{ width: "100%", height: "100%", border: "none" }}
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                />
+              </div>
+
+              {/* Sous-titres */}
+              <div
+                style={{
+                  background: "#f9fafb",
+                  border: "0.5px solid rgba(0,0,0,0.07)",
+                  borderTop: "none",
+                  padding: "1.25rem 1.5rem",
+                  minHeight: "60px",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <p
+                  style={{
+                    ...SANS,
+                    fontSize: "0.9375rem",
+                    color: "#4b5563",
+                    margin: 0,
+                    lineHeight: "1.6",
+                  }}
+                >
+                  Vidéo de présentation montrant le parcours utilisateur complet : navigation du catalogue, gestion du panier, mise à jour du stock et facturation.
+                </p>
+              </div>
+            </div>
+          </SectionBlock>
+        </FadeUp>
+
       </div>
     </article>
   )
 }
 
-// ─── Local helper ─────────────────────────────────────────────────────────────
 function SectionBlock({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div style={{ marginBottom: "3.5rem" }}>
