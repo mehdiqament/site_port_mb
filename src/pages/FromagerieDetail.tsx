@@ -204,7 +204,7 @@ export default function FromagerieDetail() {
               <div style={{ width: "100%", aspectRatio: "16/9", marginBottom: "0" }}>
                 <iframe
                   id="fromagerie-video"
-                  src="https://player.cloudinary.com/embed/?cloud_name=dk2iacpoa&public_id=rec_java_bj1zz2&autoplay=false"
+                  src="https://res.cloudinary.com/dk2iacpoa/video/upload/v1781560718/rec_java_bj1zz2.mp4"
                   style={{ width: "100%", height: "100%", border: "none" }}
                   allow="autoplay; fullscreen"
                   allowFullScreen
