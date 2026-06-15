@@ -274,16 +274,17 @@ export default function FromagerieDetail() {
   </SectionBlock>
 </FadeUp>
 
-        {/* Section - Démonstration */}
+       {/* Section - Démonstration */}
 <FadeUp delay={0}>
   <SectionBlock label="Démonstration">
     <div id="demo">
       <div style={{ width: "100%", aspectRatio: "16/9", marginBottom: "0", background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <iframe
+        <video
           src="https://res.cloudinary.com/dk2iacpoa/video/upload/v1781564272/rec_c_mqebm0.mp4"
-          style={{ width: "100%", height: "100%", border: "none" }}
-          allow="autoplay; fullscreen"
-          allowFullScreen
+          poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f3f4f6'/></svg>"
+          controls
+          preload="metadata"
+          style={{ width: "100%", height: "100%", objectFit: "contain", background: "#f3f4f6" }}
         />
       </div>
       <div style={{ background: "#f9fafb", border: "0.5px solid rgba(0,0,0,0.07)", borderTop: "none", padding: "1.25rem 1.5rem" }}>
