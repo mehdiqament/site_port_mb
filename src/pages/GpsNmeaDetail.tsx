@@ -90,40 +90,42 @@ export default function GpsNmeaDetail() {
         </FadeUp>
 
         {/* Boutons */}
-        <FadeUp delay={120} entryDelay={60}>
-          <div style={{ display: "flex", gap: "0.75rem", marginBottom: "3rem", flexWrap: "wrap" }}>
-            <CodeButton href="https://github.com/mehdiqament/Sujet1_Yahyaoui-Benataya_Bouin/tree/master/projet_gps" />
-            
-              href="#demo"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.8125rem",
-                fontWeight: 500,
-                color: "#374151",
-                textDecoration: "none",
-                border: "0.5px solid rgba(0,0,0,0.18)",
-                padding: "0.55rem 1.125rem",
-                letterSpacing: "0.02em",
-                transition: "border-color 0.2s, color 0.2s, box-shadow 0.2s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "#3B82F6"
-                e.currentTarget.style.color = "#3B82F6"
-                e.currentTarget.style.boxShadow = "0 2px 12px rgba(59,130,246,0.1)"
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "rgba(0,0,0,0.18)"
-                e.currentTarget.style.color = "#374151"
-                e.currentTarget.style.boxShadow = "none"
-              }}
-            >
-              Voir le test
-            </a>
-          </div>
-        </FadeUp>
+<FadeUp delay={120} entryDelay={60}>
+  <div style={{ display: "flex", gap: "0.75rem", marginBottom: "3rem", flexWrap: "wrap" }}>
+    <CodeButton href="https://github.com/mehdiqament/Sujet1_Yahyaoui-Benataya_Bouin/tree/master/projet_gps" />
+    
+    {/* ADD THE OPENING <a> TAG HERE */}
+    <a
+      href="#demo"
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "0.5rem",
+        fontFamily: "'Inter', sans-serif",
+        fontSize: "0.8125rem",
+        fontWeight: 500,
+        color: "#374151",
+        textDecoration: "none",
+        border: "0.5px solid rgba(0,0,0,0.18)",
+        padding: "0.55rem 1.125rem",
+        letterSpacing: "0.02em",
+        transition: "border-color 0.2s, color 0.2s, box-shadow 0.2s",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = "#3B82F6"
+        e.currentTarget.style.color = "#3B82F6"
+        e.currentTarget.style.boxShadow = "0 2px 12px rgba(59,130,246,0.1)"
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = "rgba(0,0,0,0.18)"
+        e.currentTarget.style.color = "#374151"
+        e.currentTarget.style.boxShadow = "none"
+      }}
+    >
+      Voir le test
+    </a>
+  </div>
+</FadeUp>
 
         {/* Divider */}
         <div style={{ height: "0.5px", background: "rgba(0,0,0,0.07)", marginBottom: "4rem" }} />
