@@ -1,6 +1,6 @@
 import { Mail, Github, MessageSquare } from "lucide-react"
 import { FadeUp, SectionHeader, contacts } from "../app/shared"
-import { useTranslation } from "./useTranslation" // Ajuste le chemin si nécessaire
+import { useTranslation } from "../app/useTranslation"
 
 const ICONS: Record<string, React.ReactNode> = {
   Email: <Mail size={15} strokeWidth={1.5} />,
