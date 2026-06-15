@@ -1,5 +1,5 @@
 import { FadeUp, SectionHeader, timeline } from "../app/shared"
-import { useTranslation } from "./useTranslation" // Ajuste le chemin selon ton projet
+import { useTranslation } from "../app/useTranslation"
 
 export default function Parcours() {
   const { t } = useTranslation()
