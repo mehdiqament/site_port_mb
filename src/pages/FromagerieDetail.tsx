@@ -31,17 +31,6 @@ const techStack = [
   { name: "JSON", abbr: "{}" },
 ]
 
-const subtitles = [
-  { time: 0, text: "Lancement de l'application Fromagerie." },
-  { time: 4, text: "Navigation dans le catalogue de fromages." },
-  { time: 9, text: "Filtrage par type de lait et format." },
-  { time: 15, text: "Ajout de produits au panier." },
-  { time: 21, text: "Vérification des limites de stock." },
-  { time: 27, text: "Saisie des informations client." },
-  { time: 33, text: "Génération de la facture récapitulative." },
-  { time: 38, text: "Option d'impression de la facture." },
-]
-
 export default function FromagerieDetail() {
   return (
     <article style={{ padding: "5rem 2rem 7rem" }}>
