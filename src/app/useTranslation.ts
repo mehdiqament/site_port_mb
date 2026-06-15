@@ -1,5 +1,5 @@
 import { useLanguage } from "./LanguageContext"
-import { translations } from "./translations"
+import { translations } from "../translations"
 
 type Lang = "fr" | "en"
 
