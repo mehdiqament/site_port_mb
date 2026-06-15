@@ -101,43 +101,40 @@ export default function FromagerieDetail() {
         </FadeUp>
 
         {/* Boutons */}
-        {/* Boutons */}
-<FadeUp delay={120} entryDelay={60}>
-  <div style={{ display: "flex", gap: "0.75rem", marginBottom: "3rem", flexWrap: "wrap" }}>
-    <CodeButton href="https://github.com/mehdiqament/sae-vente-fromages" />
-    
-    {/* Correction ici : Ajout de la balise ouvrante <a> */}
-    <a
-      href="#demo"
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "0.5rem",
-        fontFamily: "'Inter', sans-serif",
-        fontSize: "0.8125rem",
-        fontWeight: 500,
-        color: "#374151",
-        textDecoration: "none",
-        border: "0.5px solid rgba(0,0,0,0.18)",
-        padding: "0.55rem 1.125rem",
-        letterSpacing: "0.02em",
-        transition: "border-color 0.2s, color 0.2s, box-shadow 0.2s",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "#3B82F6"
-        e.currentTarget.style.color = "#3B82F6"
-        e.currentTarget.style.boxShadow = "0 2px 12px rgba(59,130,246,0.1)"
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = "rgba(0,0,0,0.18)"
-        e.currentTarget.style.color = "#374151"
-        e.currentTarget.style.boxShadow = "none"
-      }}
-    >
-      {"▶"} Voir le test
-    </a>
-  </div>
-</FadeUp>
+        <FadeUp delay={120} entryDelay={60}>
+          <div style={{ display: "flex", gap: "0.75rem", marginBottom: "3rem", flexWrap: "wrap" }}>
+            <CodeButton href="https://github.com/mehdiqament/sae-vente-fromages" />
+            <a
+              href="#demo"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.8125rem",
+                fontWeight: 500,
+                color: "#374151",
+                textDecoration: "none",
+                border: "0.5px solid rgba(0,0,0,0.18)",
+                padding: "0.55rem 1.125rem",
+                letterSpacing: "0.02em",
+                transition: "border-color 0.2s, color 0.2s, box-shadow 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "#3B82F6"
+                e.currentTarget.style.color = "#3B82F6"
+                e.currentTarget.style.boxShadow = "0 2px 12px rgba(59,130,246,0.1)"
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "rgba(0,0,0,0.18)"
+                e.currentTarget.style.color = "#374151"
+                e.currentTarget.style.boxShadow = "none"
+              }}
+            >
+              ▶ Voir le test
+            </a>
+          </div>
+        </FadeUp>
 
         {/* Divider */}
         <div style={{ height: "0.5px", background: "rgba(0,0,0,0.07)", marginBottom: "4rem" }} />
@@ -200,39 +197,18 @@ export default function FromagerieDetail() {
         <FadeUp delay={0}>
           <SectionBlock label="Démonstration">
             <div id="demo">
-              {/* Vidéo */}
-              <div style={{ width: "100%", aspectRatio: "16/9", marginBottom: "0" }}>
-                <iframe
-                  id="fromagerie-video"
-                  src="https://res.cloudinary.com/dk2iacpoa/video/upload/v1781560718/rec_java_bj1zz2.mp4"
-                  style={{ width: "100%", height: "100%", border: "none" }}
-                  allow="autoplay; fullscreen"
-                  allowFullScreen
+              <div style={{ width: "100%", aspectRatio: "16/9", marginBottom: "0", background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <video
+                  src="https://player.cloudinary.com/embed/?cloud_name=dk2iacpoa&public_id=rec_java_bj1zz2&profile=cld-default"
+                  poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f3f4f6'/></svg>"
+                  controls
+                  preload="metadata"
+                  style={{ width: "100%", height: "100%", objectFit: "contain", background: "#f3f4f6" }}
                 />
               </div>
-
-              {/* Sous-titres */}
-              <div
-                style={{
-                  background: "#f9fafb",
-                  border: "0.5px solid rgba(0,0,0,0.07)",
-                  borderTop: "none",
-                  padding: "1.25rem 1.5rem",
-                  minHeight: "60px",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <p
-                  style={{
-                    ...SANS,
-                    fontSize: "0.9375rem",
-                    color: "#4b5563",
-                    margin: 0,
-                    lineHeight: "1.6",
-                  }}
-                >
-                  Vidéo de présentation montrant le parcours utilisateur complet : navigation du catalogue, gestion du panier, mise à jour du stock et facturation.
+              <div style={{ background: "#f9fafb", border: "0.5px solid rgba(0,0,0,0.07)", borderTop: "none", padding: "1.25rem 1.5rem" }}>
+                <p style={{ ...SANS, fontSize: "0.9375rem", color: "#4b5563", margin: 0, lineHeight: "1.6" }}>
+                  Démonstration de l'interface de commande de fromage en action : gestion du panier, calcul des frais de port et validation du formulaire client.
                 </p>
               </div>
             </div>
@@ -240,73 +216,39 @@ export default function FromagerieDetail() {
         </FadeUp>
 
         {/* Section - Fonctionnalités démontrées */}
-<FadeUp delay={60}>
-  <SectionBlock label="Ce que montre la vidéo">
-    <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.875rem" }}>
-      {[
-        "Panier vide : un message s'affiche automatiquement si le panier est vide lors de la validation.",
-        "Trois types de fromages disponibles : vache, chèvre et brebis.",
-        "Stock limité : un message d'avertissement s'affiche si la quantité demandée dépasse le stock, et la mention « Rupture » apparaît lorsque le stock atteint zéro.",
-        "Modification de quantité dans le panier : le stock du fromage correspondant se met à jour en temps réel.",
-        "Frais de port : offerts pour toute commande supérieure à 120 €, sinon des frais s'appliquent.",
-        "Trois expéditeurs disponibles : Chronorelais, Chronofresh et Colissimo.",
-        "Formulaire client complet : nom, prénom, adresse, code postal, ville, téléphone, e-mail, mode de paiement et inscription à la newsletter.",
-        "Fenêtre facture : récapitulatif complet avec coordonnées, contenu du panier, montant des fromages et frais de port si la commande est inférieure à 120 €.",
-        "Interface responsive : toutes les fenêtres s'adaptent à la taille de l'écran.",
-      ].map((f, i) => (
-        <li
-          key={i}
-          style={{
-            ...SANS,
-            display: "flex",
-            alignItems: "flex-start",
-            gap: "0.875rem",
-            fontSize: "0.9375rem",
-            color: "#4b5563",
-            lineHeight: "1.65",
-          }}
-        >
-          <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: "#3B82F6", flexShrink: 0, marginTop: "0.55em" }} />
-          {f}
-        </li>
-      ))}
-    </ul>
-  </SectionBlock>
-</FadeUp>
-
-     {/* Section - Démonstration */}
-<FadeUp delay={0}>
-  <SectionBlock label="Démonstration">
-    <div id="demo">
-      <div style={{ width: "100%", aspectRatio: "16/9", marginBottom: "0", background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
-        
-        {/* On utilise une astuce simple : un bouton gris qui charge la vidéo uniquement au clic */}
-        <div 
-          onClick={(e) => {
-            const container = e.currentTarget;
-            container.innerHTML = `<video src="https://res.cloudinary.com/dk2iacpoa/video/upload/v1781564272/rec_c_mqebm0.mp4" autoplay controls style="width: 100%; height: 100%; object-fit: contain; background: #f3f4f6;" />`;
-          }}
-          style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", background: "#f3f4f6" }}
-        >
-          {/* Icône Play épurée au centre du fond gris */}
-          <div style={{ width: "50px", height: "50px", borderRadius: "50%", background: "rgba(0,0,0,0.05)", display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.2s" }}
-               onMouseEnter={(e) => e.currentTarget.style.background = "rgba(59,130,246,0.1)"}
-               onMouseLeave={(e) => e.currentTarget.style.background = "rgba(0,0,0,0.05)"}>
-            <svg width="16" height="18" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: "3px" }}>
-              <path d="M1 1.5V18.5L14.5 10L1 1.5Z" fill="#374151" stroke="#374151" strokeWidth="2" strokeLinejoin="round"/>
-            </svg>
-          </div>
-        </div>
-
-      </div>
-      <div style={{ background: "#f9fafb", border: "0.5px solid rgba(0,0,0,0.07)", borderTop: "none", padding: "1.25rem 1.5rem" }}>
-        <p style={{ ...SANS, fontSize: "0.9375rem", color: "#4b5563", margin: 0, lineHeight: "1.6" }}>
-          Visuel du parseur en action. Le programme réalise une validation stricte : toute trame copiée du web incomplète ou ayant un checksum erroné provoque un échec de lecture. Une fois les trames valides détectées, l'algorithme extrait et convertit avec succès les coordonnées géographiques, illustré ici par le décodage précis des positions de <span style={{ color: "#0D0D0D", fontWeight: 500 }}>Paris</span> et <span style={{ color: "#0D0D0D", fontWeight: 500 }}>New York</span>.
-        </p>
-      </div>
-    </div>
-  </SectionBlock>
-</FadeUp>
+        <FadeUp delay={60}>
+          <SectionBlock label="Ce que montre la vidéo">
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.875rem" }}>
+              {[
+                "Panier vide : un message s'affiche automatiquement si le panier est vide lors de la validation.",
+                "Trois types de fromages disponibles : vache, chèvre et brebis.",
+                "Stock limité : un message d'avertissement s'affiche si la quantité demandée dépasse le stock, et la mention « Rupture » apparaît lorsque le stock atteint zéro.",
+                "Modification de quantité dans le panier : le stock du fromage correspondant se met à jour en temps réel.",
+                "Frais de port : offerts pour toute commande supérieure à 120 €, sinon des frais s'appliquent.",
+                "Trois expéditeurs disponibles : Chronorelais, Chronofresh et Colissimo.",
+                "Formulaire client complet : nom, prénom, adresse, code postal, ville, téléphone, e-mail, mode de paiement et inscription à la newsletter.",
+                "Fenêtre facture : récapitulatif complet avec coordonnées, contenu du panier, montant des fromages et frais de port si la commande est inférieure à 120 €.",
+                "Interface responsive : toutes les fenêtres s'adaptent à la taille de l'écran.",
+              ].map((f, i) => (
+                <li
+                  key={i}
+                  style={{
+                    ...SANS,
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "0.875rem",
+                    fontSize: "0.9375rem",
+                    color: "#4b5563",
+                    lineHeight: "1.65",
+                  }}
+                >
+                  <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: "#3B82F6", flexShrink: 0, marginTop: "0.55em" }} />
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </SectionBlock>
+        </FadeUp>
 
       </div>
     </article>
@@ -323,7 +265,7 @@ function SectionBlock({ label, children }: { label: string; children: React.Reac
           letterSpacing: "0.14em",
           color: "#9ca3af",
           textTransform: "uppercase",
-          marginBottom: "1.25rem",
+          marginBottom: "1rem",
         }}
       >
         {label}
