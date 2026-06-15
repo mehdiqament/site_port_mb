@@ -1,7 +1,7 @@
 import { Link } from "react-router"
 import { ArrowLeft } from "lucide-react"
 import { FadeUp, CodeButton } from "../app/shared"
-import { useTranslation } from "./useTranslation" // Ajuste le chemin si nécessaire
+import { useTranslation } from "../app/useTranslation"
 
 const MONO: React.CSSProperties = { fontFamily: "'JetBrains Mono', monospace" }
 const SANS: React.CSSProperties = { fontFamily: "'Inter', sans-serif" }
