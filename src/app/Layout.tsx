@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import { NavLink, Outlet, useLocation } from "react-router"
 import { GLOBAL_CSS } from "./shared"
+import { useTranslation } from "./useTranslation"
+import { useLanguage } from "./LanguageContext"
 
 // ─── Typewriter (loading screen only) ────────────────────────────────────────
 function useTypewriter(text: string, speed = 95, startDelay = 700) {
@@ -41,9 +43,43 @@ function NavItem({ to, label, prefix }: { to: string; label: string; prefix?: bo
   )
 }
 
-// ─── Layout ───────────────────────────────────────────────────────────────────
+// ─── Language switch button ──────────────────────────────────────────────────
+function LangSwitch() {
+  const { lang, toggleLang } = useLanguage()
+  return (
+    <button
+      onClick={toggleLang}
+      aria-label="Switch language"
+      style={{
+        fontFamily: "'JetBrains Mono', monospace",
+        fontSize: "0.75rem",
+        fontWeight: 500,
+        letterSpacing: "0.06em",
+        color: "#6b7280",
+        background: "transparent",
+        border: "0.5px solid rgba(0,0,0,0.12)",
+        padding: "0.35rem 0.7rem",
+        cursor: "pointer",
+        transition: "border-color 0.2s, color 0.2s",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = "#3B82F6"
+        e.currentTarget.style.color = "#3B82F6"
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = "rgba(0,0,0,0.12)"
+        e.currentTarget.style.color = "#6b7280"
+      }}
+    >
+      {lang === "fr" ? "EN" : "FR"}
+    </button>
+  )
+}
+
+
 export default function Layout() {
   const location = useLocation()
+  const { t } = useTranslation()
 
   // Loading screen: only on first visit per session
   const [loadPhase, setLoadPhase] = useState<"loading" | "exiting" | "done">(() => {
@@ -176,7 +212,7 @@ export default function Layout() {
               e.currentTarget.style.color = "rgba(255,255,255,0.55)"
             }}
           >
-            [ Enter ]
+            {t("layout.enter")}
           </button>
         </div>
       )}
@@ -229,33 +265,37 @@ export default function Layout() {
               mehdiqament.dev
             </NavLink>
 
-            <div className="hide-sm" style={{ display: "flex", gap: "2.25rem" }}>
-              <NavItem to="/" label="Accueil" />
-              <NavItem to="/competences" label="Compétences" />
-              <NavItem to="/parcours" label="Parcours" />
-              <NavItem to="/projets" label="Projets" prefix />
-              <NavItem to="/alternance" label="Alternance" />
-              <NavItem to="/contact" label="Contact" />
+            <div className="hide-sm" style={{ display: "flex", gap: "2.25rem", alignItems: "center" }}>
+              <NavItem to="/" label={t("nav.home")} />
+              <NavItem to="/competences" label={t("nav.competences")} />
+              <NavItem to="/parcours" label={t("nav.parcours")} />
+              <NavItem to="/projets" label={t("nav.projets")} prefix />
+              <NavItem to="/alternance" label={t("nav.alternance")} />
+              <NavItem to="/contact" label={t("nav.contact")} />
+              <LangSwitch />
             </div>
 
-            <button
-              className={`hamburger-btn${menuOpen ? " is-open" : ""}`}
-              aria-label="Menu"
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((v) => !v)}
-            >
-              <span />
-            </button>
+            <div className="show-sm" style={{ display: "none", alignItems: "center", gap: "0.625rem" }}>
+              <LangSwitch />
+              <button
+                className={`hamburger-btn${menuOpen ? " is-open" : ""}`}
+                aria-label="Menu"
+                aria-expanded={menuOpen}
+                onClick={() => setMenuOpen((v) => !v)}
+              >
+                <span />
+              </button>
+            </div>
           </div>
 
           {/* Mobile dropdown menu */}
           <div className={`mobile-menu${menuOpen ? " is-open" : ""}`}>
-            <NavItem to="/" label="Accueil" />
-            <NavItem to="/competences" label="Compétences" />
-            <NavItem to="/parcours" label="Parcours" />
-            <NavItem to="/projets" label="Projets" prefix />
-            <NavItem to="/alternance" label="Alternance" />
-            <NavItem to="/contact" label="Contact" />
+            <NavItem to="/" label={t("nav.home")} />
+            <NavItem to="/competences" label={t("nav.competences")} />
+            <NavItem to="/parcours" label={t("nav.parcours")} />
+            <NavItem to="/projets" label={t("nav.projets")} prefix />
+            <NavItem to="/alternance" label={t("nav.alternance")} />
+            <NavItem to="/contact" label={t("nav.contact")} />
           </div>
         </nav>
 
@@ -287,7 +327,7 @@ export default function Layout() {
               letterSpacing: "0.06em",
             }}
           >
-            mehdiqament.dev · 2026
+            {t("layout.footer")}
           </span>
         </footer>
       </div>
