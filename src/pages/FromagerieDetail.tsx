@@ -280,7 +280,7 @@ export default function FromagerieDetail() {
     <div id="demo">
       <div style={{ width: "100%", aspectRatio: "16/9", marginBottom: "0", background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center" }}>
         <video
-          src="METS_ICI_L_URL_DE_TA_VIDEO_FROMAGE"
+          src="https://player.cloudinary.com/embed/?cloud_name=dk2iacpoa&public_id=rec_java_bj1zz2"
           poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f3f4f6'/></svg>"
           controls
           preload="metadata"
