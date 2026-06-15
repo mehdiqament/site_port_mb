@@ -44,16 +44,23 @@ function AnimatedBar({ pct }: { pct: number }) {
 }
 
 export default function Competences() {
-  // 1. Tri automatique des compétences techniques reçues par ordre décroissant
+  // 1. Tri automatique des compétences techniques
   const sortedTechSkills = [...skills].sort((a, b) => b.pct - a.pct)
 
-  // 2. Définition des langues demandées
+  // 2. Compétences comportementales (Soft Skills) - Sans pourcentage bar
+  const softSkills = [
+    { abbr: "PER", name: "Persévérance & Résilience", desc: "Capacité à répéter, tester et ajuster un code ou un modèle jusqu'à l'obtention du résultat visé." },
+    { abbr: "PAT", name: "Patience & Rigueur", desc: "Savoir prendre le temps d'analyser les bugs, de nettoyer des bases de données et de structurer des algorithmes complexes." },
+    { abbr: "AUT", name: "Autonomie & Curiosité", desc: "Recherche active de solutions, veille technologique constante et apprentissage continu." }
+  ]
+
+  // 3. Définition des langues
   const langues = [
     { abbr: "FR", name: "Français", desc: "Langue maternelle", pct: 100 },
     { abbr: "EN", name: "Anglais", desc: "Technique, lecture de documentations, communication professionnelle", pct: 75 }
   ]
 
-  // Fonction utilitaire pour éviter la répétition du design des lignes
+  // Fonction d'affichage standard (avec barre de progression)
   const renderSkillRow = (skill: { abbr: string; name: string; desc: string; pct: number }, index: number, delayOffset: number = 0) => (
     <FadeUp key={skill.name} delay={(index * 45) + delayOffset}>
       <div
@@ -67,60 +74,52 @@ export default function Competences() {
           alignItems: "start",
         }}
       >
-        {/* Icon / Abbr */}
-        <span
-          style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: "0.8125rem",
-            color: "#3B82F6",
-            fontWeight: 300,
-            paddingTop: "1px",
-            userSelect: "none",
-          }}
-        >
+        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8125rem", color: "#3B82F6", fontWeight: 300, paddingTop: "1px", userSelect: "none" }}>
           {skill.abbr}
         </span>
 
-        {/* Name + desc + bar */}
         <div style={{ minWidth: 0 }}>
-          <div
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.9375rem",
-              fontWeight: 500,
-              color: "#0D0D0D",
-              marginBottom: "0.3rem",
-              letterSpacing: "-0.005em",
-            }}
-          >
+          <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", fontWeight: 500, color: "#0D0D0D", marginBottom: "0.3rem", letterSpacing: "-0.005em" }}>
             {skill.name}
           </div>
-          <div
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.8125rem",
-              color: "#9ca3af",
-              lineHeight: "1.55",
-              marginBottom: "0.875rem",
-            }}
-          >
+          <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#9ca3af", lineHeight: "1.55", marginBottom: "0.875rem" }}>
             {skill.desc}
           </div>
           <AnimatedBar pct={skill.pct} />
         </div>
 
-        {/* Percentage */}
-        <div
-          style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: "0.75rem",
-            color: "#6b7280",
-            letterSpacing: "0.04em",
-            paddingTop: "2px",
-            whiteSpace: "nowrap",
-          }}
-        >
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem", color: "#6b7280", letterSpacing: "0.04em", paddingTop: "2px", whiteSpace: "nowrap" }}>
           {skill.pct}%
+        </div>
+      </div>
+    </FadeUp>
+  )
+
+  // Fonction d'affichage pour les soft skills (sans jauge ni pourcentage pour faire plus pro)
+  const renderSoftSkillRow = (skill: { abbr: string; name: string; desc: string }, index: number, delayOffset: number = 0) => (
+    <FadeUp key={skill.name} delay={(index * 45) + delayOffset}>
+      <div
+        style={{
+          paddingTop: "1.625rem",
+          paddingBottom: "1.625rem",
+          borderBottom: "0.5px solid rgba(0,0,0,0.07)",
+          display: "grid",
+          gridTemplateColumns: "2rem 1fr",
+          gap: "0 1.25rem",
+          alignItems: "start",
+        }}
+      >
+        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8125rem", color: "#3B82F6", fontWeight: 300, paddingTop: "1px", userSelect: "none" }}>
+          {skill.abbr}
+        </span>
+
+        <div style={{ minWidth: 0 }}>
+          <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", fontWeight: 500, color: "#0D0D0D", marginBottom: "0.3rem", letterSpacing: "-0.005em" }}>
+            {skill.name}
+          </div>
+          <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#6b7280", lineHeight: "1.55" }}>
+            {skill.desc}
+          </div>
         </div>
       </div>
     </FadeUp>
@@ -128,24 +127,4 @@ export default function Competences() {
 
   return (
     <section style={{ padding: "7rem 2rem" }}>
-      <div style={{ maxWidth: "68rem", margin: "0 auto" }}>
-        <SectionHeader label="Stack technique" title="Compétences" />
-
-        {/* Liste des compétences techniques triées */}
-        <div>
-          {sortedTechSkills.map((skill, i) => renderSkillRow(skill, i))}
-        </div>
-
-        {/* Séparateur discret avant les langues */}
-        <div style={{ marginTop: "4rem", marginBottom: "3rem" }}>
-          <SectionHeader label="Langues" title="Langues" />
-        </div>
-
-        {/* Section Langues */}
-        <div>
-          {langues.map((langue, i) => renderSkillRow(langue, i, sortedTechSkills.length * 45))}
-        </div>
-      </div>
-    </section>
-  )
-}
+      <div style={{ maxWidth: "68rem
