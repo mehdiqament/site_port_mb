@@ -148,7 +148,7 @@ export default function Projets() {
           <ProjectCard
             to="/projets/fromagerie"
             title="Application de vente - Fromagerie 🧀"
-            desc="Application Java Swing simulant un site de vente de fromages : gestion du stock, panier, filtres, génération de facture."
+            desc="Application Java Swing simulant une application de vente de fromages : gestion du stock, panier, filtres, génération de facture."
             tags={["Java", "Swing", "JSON"]}
             badge="SAÉ"
           />
