@@ -142,7 +142,7 @@ export default function FromagerieDetail() {
                 e.currentTarget.style.boxShadow = "none"
               }}
             >
-              ▶ Voir le test
+              {"▶"} Voir le test
             </a>
           </div>
         </FadeUp>
