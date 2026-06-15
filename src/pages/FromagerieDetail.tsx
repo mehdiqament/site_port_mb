@@ -61,29 +61,10 @@ export default function FromagerieDetail() {
 
         {/* Title */}
         <FadeUp delay={40} entryDelay={60}>
-          <div
-            style={{
-              ...MONO,
-              fontSize: "0.7rem",
-              letterSpacing: "0.15em",
-              color: "#9ca3af",
-              textTransform: "uppercase",
-              marginBottom: "1rem",
-            }}
-          >
+          <div style={{ ...MONO, fontSize: "0.7rem", letterSpacing: "0.15em", color: "#9ca3af", textTransform: "uppercase", marginBottom: "1rem" }}>
             SAÉ · Projet scolaire
           </div>
-          <h1
-            style={{
-              ...SANS,
-              fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
-              fontWeight: 300,
-              color: "#0D0D0D",
-              letterSpacing: "-0.02em",
-              lineHeight: 1.2,
-              margin: "0 0 2rem",
-            }}
-          >
+          <h1 style={{ ...SANS, fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 300, color: "#0D0D0D", letterSpacing: "-0.02em", lineHeight: 1.2, margin: "0 0 2rem" }}>
             Application de vente<br />Fromagerie 🧀
           </h1>
         </FadeUp>
@@ -154,18 +135,7 @@ export default function FromagerieDetail() {
           <SectionBlock label="Fonctionnalités">
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.875rem" }}>
               {features.map((f, i) => (
-                <li
-                  key={i}
-                  style={{
-                    ...SANS,
-                    display: "flex",
-                    alignItems: "flex-start",
-                    gap: "0.875rem",
-                    fontSize: "0.9375rem",
-                    color: "#4b5563",
-                    lineHeight: "1.65",
-                  }}
-                >
+                <li key={i} style={{ ...SANS, display: "flex", alignItems: "flex-start", gap: "0.875rem", fontSize: "0.9375rem", color: "#4b5563", lineHeight: "1.65" }}>
                   <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: "#3B82F6", flexShrink: 0, marginTop: "0.55em" }} />
                   {f}
                 </li>
@@ -198,12 +168,11 @@ export default function FromagerieDetail() {
           <SectionBlock label="Démonstration">
             <div id="demo">
               <div style={{ width: "100%", aspectRatio: "16/9", marginBottom: "0", background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <video
+                <iframe
                   src="https://player.cloudinary.com/embed/?cloud_name=dk2iacpoa&public_id=rec_java_bj1zz2&profile=cld-default"
-                  poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f3f4f6'/></svg>"
-                  controls
-                  preload="metadata"
-                  style={{ width: "100%", height: "100%", objectFit: "contain", background: "#f3f4f6" }}
+                  style={{ width: "100%", height: "100%", border: "none" }}
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
                 />
               </div>
               <div style={{ background: "#f9fafb", border: "0.5px solid rgba(0,0,0,0.07)", borderTop: "none", padding: "1.25rem 1.5rem" }}>
@@ -230,18 +199,7 @@ export default function FromagerieDetail() {
                 "Fenêtre facture : récapitulatif complet avec coordonnées, contenu du panier, montant des fromages et frais de port si la commande est inférieure à 120 €.",
                 "Interface responsive : toutes les fenêtres s'adaptent à la taille de l'écran.",
               ].map((f, i) => (
-                <li
-                  key={i}
-                  style={{
-                    ...SANS,
-                    display: "flex",
-                    alignItems: "flex-start",
-                    gap: "0.875rem",
-                    fontSize: "0.9375rem",
-                    color: "#4b5563",
-                    lineHeight: "1.65",
-                  }}
-                >
+                <li key={i} style={{ ...SANS, display: "flex", alignItems: "flex-start", gap: "0.875rem", fontSize: "0.9375rem", color: "#4b5563", lineHeight: "1.65" }}>
                   <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: "#3B82F6", flexShrink: 0, marginTop: "0.55em" }} />
                   {f}
                 </li>
@@ -258,16 +216,7 @@ export default function FromagerieDetail() {
 function SectionBlock({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div style={{ marginBottom: "3.5rem" }}>
-      <div
-        style={{
-          fontFamily: "'JetBrains Mono', monospace",
-          fontSize: "0.7rem",
-          letterSpacing: "0.14em",
-          color: "#9ca3af",
-          textTransform: "uppercase",
-          marginBottom: "1rem",
-        }}
-      >
+      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.14em", color: "#9ca3af", textTransform: "uppercase", marginBottom: "1.25rem" }}>
         {label}
       </div>
       {children}
