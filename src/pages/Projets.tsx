@@ -157,7 +157,7 @@ export default function Projets() {
             title="Analyseur de trames GPS NMEA 🛰️"
             desc="Parseur en langage C de trames GPS NMEA : vérification, extraction des champs, conversion de coordonnées et formatage de l'heure."
             tags={["C", "Shell", "Makefile"]}
-            badge="R2.04"
+            badge="SAÉ"
           />
         </YearSection>
 
