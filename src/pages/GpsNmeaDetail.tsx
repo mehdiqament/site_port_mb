@@ -134,7 +134,7 @@ export default function GpsNmeaDetail() {
         <FadeUp delay={0}>
           <SectionBlock label="Le projet">
             <p style={{ ...SANS, fontSize: "0.9375rem", color: "#4b5563", lineHeight: "1.8", margin: 0 }}>
-              Réalisé dans le cadre de la ressource R2.04, ce projet implémente un parseur de trames GPS NMEA en langage C. Il lit des trames issues d'un récepteur GPS, vérifie leur intégrité par checksum, puis extrait et met en forme les données de position et de temps contenues dans les formats{" "}
+              Réalisée dans le cadre d'une SAÉ (Situation d'Apprentissage et d'Évaluation), ce projet implémente un parseur de trames GPS NMEA en langage C. Il lit des trames issues d'un récepteur GPS, vérifie leur intégrité par checksum, puis extrait et met en forme les données de position et de temps contenues dans les formats{" "}
               <span style={{ color: "#0D0D0D", fontWeight: 500 }}>$GPRMC</span> et{" "}
               <span style={{ color: "#0D0D0D", fontWeight: 500 }}>$GPGGA</span>.
             </p>
@@ -180,7 +180,7 @@ export default function GpsNmeaDetail() {
             <div id="demo">
               <div style={{ width: "100%", aspectRatio: "16/9", marginBottom: "0", background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <iframe
-                  src="METTRE_URL_ICI"
+                  src="https://res.cloudinary.com/dk2iacpoa/video/upload/v1781564272/rec_c_mqebm0.mp4"
                   style={{ width: "100%", height: "100%", border: "none" }}
                   allow="autoplay; fullscreen"
                   allowFullScreen
