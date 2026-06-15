@@ -1,10 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 import { Github } from "lucide-react"
-import { useTranslation } from "./useTranslation"
 
 // ─── Voir le code button ──────────────────────────────────────────────────────
 export function CodeButton({ href }: { href: string }) {
-  const { t } = useTranslation()
   return (
     <a
       href={href}
@@ -36,7 +34,7 @@ export function CodeButton({ href }: { href: string }) {
       }}
     >
       <Github size={14} strokeWidth={1.5} />
-      {t("codeButton.label")}
+      Voir le code
     </a>
   )
 }
@@ -148,17 +146,62 @@ export function PageContent({
 }
 
 // ─── Shared data ─────────────────────────────────────────────────────────────
-// `skills` and `timeline` contain translated text, so they are exposed as hooks
-// that read from the current language.
-export function useSkills() {
-  const { lang } = useTranslation()
-  return translations[lang].skills
-}
-
-export function useTimeline() {
-  const { lang } = useTranslation()
-  return translations[lang].timeline
-}
+export const skills = [
+  {
+    name: "Java",
+    abbr: "☕",
+    pct: 85,
+    desc: "Programmation orientée objet, applications Swing multi-fenêtres (JDialog), gestion de stock et panier, lecture/écriture JSON",
+  },
+  {
+    name: "SQL",
+    abbr: "⬡",
+    pct: 75,
+    desc: "Requêtes Oracle SQL, jointures, sous-requêtes, vues, séquences",
+  },
+  {
+    name: "UML / Modélisation",
+    abbr: "◈",
+    pct: 80,
+    desc: "Diagrammes de classes et de séquence, modélisation avec Modelio",
+  },
+  {
+    name: "HTML / CSS",
+    abbr: "<>",
+    pct: 70,
+    desc: "Mise en page, structure sémantique, mise en forme responsive de base",
+  },
+  {
+    name: "Shell / Linux",
+    abbr: "$_",
+    pct: 65,
+    desc: "Administration de VM Debian, configuration Apache2, SSH, scripts bash",
+  },
+  {
+    name: "Gestion de projet",
+    abbr: "▦",
+    pct: 65,
+    desc: "Planification Gantt, méthodologie SAÉ, coordination d'équipe",
+  },
+  {
+    name: "Algorithmique & Graphes",
+    abbr: "∞",
+    pct: 55,
+    desc: "Python, algorithmes de Dijkstra et Bellman-Ford, structures de données",
+  },
+  {
+    name: "Python",
+    abbr: "py",
+    pct: 40,
+    desc: "Scripts d'analyse de données avec numpy",
+  },
+  {
+    name: "C",
+    abbr: "©",
+    pct: 55,
+    desc: "Programmation bas niveau, parsing de fichiers (trames GPS NMEA)",
+  },
+]
 
 // kept for the Fromagerie detail page
 export const primarySkills = [
@@ -169,6 +212,30 @@ export const primarySkills = [
 export const secondarySkills = [
   { name: "HTML / CSS", abbr: "<>" },
   { name: "Python", abbr: "py" },
+]
+
+export const timeline = [
+  {
+    year: "2025",
+    title: "Bac STI2D",
+    sub: "Lycée",
+    desc: "Mention Assez Bien - Sciences et Technologies de l'Industrie et du Développement Durable.",
+    active: false,
+  },
+  {
+    year: "2025–26",
+    title: "BUT Informatique - 1ère année",
+    sub: "Université Paul Sabatier, Toulouse",
+    desc: "Fondamentaux du développement logiciel, algorithmique et bases de données relationnelles.",
+    active: false,
+  },
+  {
+    year: "2026–27",
+    title: "BUT Informatique - 2ème année",
+    sub: "Spécialisation Données & IA",
+    desc: "Approfondissement en data engineering, machine learning et traitement de données massives.",
+    active: true,
+  },
 ]
 
 export const contacts = [
@@ -311,7 +378,6 @@ export const GLOBAL_CSS = `
   @media (max-width:680px) {
     .hero-title { font-size:clamp(4rem,22vw,10rem) !important; }
     .hide-sm { display:none !important; }
-    .show-sm { display:flex !important; }
     .contacts-row { flex-direction:column; }
     .hamburger-btn { display:flex; }
     .mobile-menu { display:flex; }

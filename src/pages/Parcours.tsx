@@ -1,15 +1,10 @@
-import { FadeUp, SectionHeader, useTimeline } from "../app/shared"
-import { useTranslation } from "../app/useTranslation"
+import { FadeUp, SectionHeader, timeline } from "../app/shared"
 
 export default function Parcours() {
-  const timeline = useTimeline()
-  const { t } = useTranslation()
-
   return (
     <section style={{ padding: "7rem 2rem" }}>
       <div style={{ maxWidth: "68rem", margin: "0 auto" }}>
-        {/* En-tête de section traduit */}
-        <SectionHeader label={t("parcours.label")} title={t("parcours.title")} />
+        <SectionHeader label="Formation" title="Parcours" />
 
         <div style={{ position: "relative" }}>
           {/* Vertical gradient line */}
@@ -36,7 +31,7 @@ export default function Parcours() {
                   alignItems: "flex-start",
                 }}
               >
-                {/* Year - Reste fixe en général */}
+                {/* Year */}
                 <div
                   style={{
                     width: "4.5rem",
@@ -74,7 +69,7 @@ export default function Parcours() {
                   />
                 </div>
 
-                {/* Content traduit dynamiquement par index */}
+                {/* Content */}
                 <div style={{ flex: 1, paddingLeft: "1.5rem" }}>
                   <div
                     style={{
@@ -86,7 +81,7 @@ export default function Parcours() {
                       letterSpacing: "-0.005em",
                     }}
                   >
-                    {t(`parcours.items.${i}.title`)}
+                    {item.title}
                   </div>
                   <div
                     style={{
@@ -97,7 +92,7 @@ export default function Parcours() {
                       fontWeight: 400,
                     }}
                   >
-                    {t(`parcours.items.${i}.sub`)}
+                    {item.sub}
                   </div>
                   <div
                     style={{
@@ -108,7 +103,7 @@ export default function Parcours() {
                       maxWidth: "36rem",
                     }}
                   >
-                    {t(`parcours.items.${i}.desc`)}
+                    {item.desc}
                   </div>
                 </div>
               </div>

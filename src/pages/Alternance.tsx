@@ -1,14 +1,12 @@
 import { useState } from "react"
 import { X, Download, Send, Lock, Mail } from "lucide-react"
 import { FadeUp, SectionHeader } from "../app/shared"
-import { useTranslation } from "../app/useTranslation"
 import cvUrl from "../imports/CV_Bouin_Mehdi.pdf"
 
 // ─── CV Modal ─────────────────────────────────────────────────────────────────
 type ModalTab = "code" | "request"
 
 function CvModal({ onClose }: { onClose: () => void }) {
-  const { t } = useTranslation()
   const [tab, setTab] = useState<ModalTab>("code")
   const [password, setPassword] = useState("")
   const [pwError, setPwError] = useState("")
@@ -25,14 +23,14 @@ function CvModal({ onClose }: { onClose: () => void }) {
       link.click()
       setPwError("")
     } else {
-      setPwError(t("alternance.modal.accessCodeError"))
+      setPwError("Code d'accès incorrect.")
     }
   }
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!email.includes("@")) {
-      setEmailError(t("alternance.modal.emailError"))
+      setEmailError("Veuillez entrer une adresse email valide.")
       return
     }
     setEmailError("")
@@ -74,10 +72,10 @@ function CvModal({ onClose }: { onClose: () => void }) {
         <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: "1.75rem" }}>
           <div>
             <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.14em", color: "#9ca3af", textTransform: "uppercase", marginBottom: "0.375rem" }}>
-              {t("alternance.modal.documentLabel")}
+              Document
             </div>
             <h2 style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.125rem", fontWeight: 500, color: "#0D0D0D", margin: 0, letterSpacing: "-0.01em" }}>
-              {t("alternance.modal.title")}
+              Accéder au CV
             </h2>
           </div>
           <button
@@ -92,7 +90,7 @@ function CvModal({ onClose }: { onClose: () => void }) {
 
         {/* Tab switcher */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.375rem", marginBottom: "1.75rem", background: "#f9fafb", padding: "3px", border: "0.5px solid rgba(0,0,0,0.07)" }}>
-          {([["code", t("alternance.modal.tabCode")], ["request", t("alternance.modal.tabRequest")]] as [ModalTab, string][]).map(([id, label]) => (
+          {([["code", "J'ai un code"], ["request", "Demander l'accès"]] as [ModalTab, string][]).map(([id, label]) => (
             <button
               key={id}
               onClick={() => setTab(id)}
@@ -119,7 +117,7 @@ function CvModal({ onClose }: { onClose: () => void }) {
         {tab === "code" && (
           <form onSubmit={handlePasswordSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.875rem" }}>
             <label style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#374151", fontWeight: 500 }}>
-              {t("alternance.modal.accessCodeLabel")}
+              Code d'accès
             </label>
             <div style={{ position: "relative" }}>
               <Lock size={14} strokeWidth={1.5} style={{ position: "absolute", left: "0.875rem", top: "50%", transform: "translateY(-50%)", color: "#9ca3af", pointerEvents: "none" }} />
@@ -127,7 +125,7 @@ function CvModal({ onClose }: { onClose: () => void }) {
                 type="password"
                 value={password}
                 onChange={(e) => { setPassword(e.target.value); setPwError("") }}
-                placeholder={t("alternance.modal.accessCodePlaceholder")}
+                placeholder="Entrez votre code"
                 style={{
                   width: "100%",
                   padding: "0.65rem 0.875rem 0.65rem 2.25rem",
@@ -169,7 +167,7 @@ function CvModal({ onClose }: { onClose: () => void }) {
               onMouseLeave={(e) => (e.currentTarget.style.background = "#3B82F6")}
             >
               <Download size={14} strokeWidth={1.5} />
-              {t("alternance.modal.downloadCv")}
+              Télécharger le CV
             </button>
           </form>
         )}
@@ -180,16 +178,16 @@ function CvModal({ onClose }: { onClose: () => void }) {
             <div style={{ textAlign: "center", padding: "1.5rem 0" }}>
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "1.5rem", marginBottom: "0.875rem" }}>✓</div>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", fontWeight: 500, color: "#0D0D0D", marginBottom: "0.5rem" }}>
-                {t("alternance.modal.sentTitle")}
+                Demande envoyée !
               </p>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#6b7280", lineHeight: "1.6", margin: 0 }}>
-                {t("alternance.modal.sentDesc")}
+                Mehdi recevra votre demande et vous enverra un code d'accès par email sous 24h.
               </p>
             </div>
           ) : (
             <form onSubmit={handleEmailSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.875rem" }}>
               <label style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "#374151", fontWeight: 500 }}>
-                {t("alternance.modal.emailLabel")}
+                Votre adresse email
               </label>
               <div style={{ position: "relative" }}>
                 <Mail size={14} strokeWidth={1.5} style={{ position: "absolute", left: "0.875rem", top: "50%", transform: "translateY(-50%)", color: "#9ca3af", pointerEvents: "none" }} />
@@ -197,7 +195,7 @@ function CvModal({ onClose }: { onClose: () => void }) {
                   type="email"
                   value={email}
                   onChange={(e) => { setEmail(e.target.value); setEmailError("") }}
-                  placeholder={t("alternance.modal.emailPlaceholder")}
+                  placeholder="vous@exemple.com"
                   style={{
                     width: "100%",
                     padding: "0.65rem 0.875rem 0.65rem 2.25rem",
@@ -239,12 +237,12 @@ function CvModal({ onClose }: { onClose: () => void }) {
                 onMouseLeave={(e) => (e.currentTarget.style.background = "#3B82F6")}
               >
                 <Send size={14} strokeWidth={1.5} />
-                {t("alternance.modal.sendRequest")}
+                Envoyer la demande
               </button>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "#9ca3af", lineHeight: "1.55", margin: 0 }}>
-                {t("alternance.modal.notice1")}{" "}
+                Cela enverra instantanément une notification à{" "}
                 <span style={{ color: "#6b7280" }}>mehdi@mehdiqament.dev</span>{" "}
-                {t("alternance.modal.notice2")}
+                pour me permettre de vous valider l'accès.
               </p>
             </form>
           )
@@ -275,13 +273,12 @@ function InfoCard({ label, value }: { label: string; value: string }) {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function Alternance() {
-  const { t } = useTranslation()
   const [modalOpen, setModalOpen] = useState(false)
 
   return (
     <section style={{ padding: "7rem 2rem" }}>
       <div style={{ maxWidth: "68rem", margin: "0 auto" }}>
-        <SectionHeader label={t("alternance.label")} title={t("alternance.title")} />
+        <SectionHeader label="Objectif" title="Alternance" />
 
         <div
           style={{
@@ -305,13 +302,13 @@ export default function Alternance() {
                   margin: "0 0 2.25rem",
                 }}
               >
-                {t("alternance.intro1")}{" "}
-                <strong style={{ fontWeight: 600, color: "#0D0D0D" }}>{t("alternance.introHighlight1")}</strong>{" "}
-                {t("alternance.introMid")}{" "}
-                <strong style={{ fontWeight: 600, color: "#0D0D0D" }}>{t("alternance.introHighlight2")}</strong>.
-                {" "}{t("alternance.introEnd1")}{" "}
-                <strong style={{ fontWeight: 600, color: "#0D0D0D" }}>{t("alternance.introHighlight3")}</strong>{" "}
-                {t("alternance.introEnd2")}
+                Actuellement en BUT Informatique, je recherche une{" "}
+                <strong style={{ fontWeight: 600, color: "#0D0D0D" }}>alternance de 12 à 24 mois</strong>{" "}
+                axée sur le{" "}
+                <strong style={{ fontWeight: 600, color: "#0D0D0D" }}>développement logiciel ou les Données & IA</strong>.
+                Mon objectif est d'intégrer mes compétences techniques au sein d'une équipe passionnée pour relever des défis concrets, avec l'ambition d'évoluer vers un{" "}
+                <strong style={{ fontWeight: 600, color: "#0D0D0D" }}>CDI</strong>{" "}
+                à l'issue de ma formation.
               </p>
 
               <button
@@ -341,7 +338,7 @@ export default function Alternance() {
                 }}
               >
                 <Download size={16} strokeWidth={1.5} />
-                {t("alternance.downloadCv")}
+                Télécharger mon CV
               </button>
             </div>
           </FadeUp>
@@ -349,10 +346,10 @@ export default function Alternance() {
           {/* Right — info cards */}
           <FadeUp delay={160}>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem", minWidth: "14rem" }}>
-              <InfoCard label={t("alternance.infoCards.duration.label")} value={t("alternance.infoCards.duration.value")} />
-              <InfoCard label={t("alternance.infoCards.domain.label")} value={t("alternance.infoCards.domain.value")} />
-              <InfoCard label={t("alternance.infoCards.location.label")} value={t("alternance.infoCards.location.value")} />
-              <InfoCard label={t("alternance.infoCards.availability.label")} value={t("alternance.infoCards.availability.value")} />
+              <InfoCard label="Durée recherchée" value="12 à 24 mois" />
+              <InfoCard label="Domaine" value="Dév. logiciel · Données & IA" />
+              <InfoCard label="Localisation" value="Toulouse & région" />
+              <InfoCard label="Disponibilité" value="Dès avril 2027" />
             </div>
           </FadeUp>
         </div>

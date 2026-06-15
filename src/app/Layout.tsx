@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react"
 import { NavLink, Outlet, useLocation } from "react-router"
 import { GLOBAL_CSS } from "./shared"
-import { useTranslation } from "./useTranslation"
-import { useLanguage } from "./LanguageContext"
 
+// ─── Typewriter (loading screen only) ────────────────────────────────────────
 function useTypewriter(text: string, speed = 95, startDelay = 700) {
   const [displayed, setDisplayed] = useState("")
   const [done, setDone] = useState(false)
@@ -27,6 +26,7 @@ function useTypewriter(text: string, speed = 95, startDelay = 700) {
   return { displayed, done }
 }
 
+// ─── Nav link wrapper ─────────────────────────────────────────────────────────
 function NavItem({ to, label, prefix }: { to: string; label: string; prefix?: boolean }) {
   return (
     <NavLink
@@ -41,43 +41,11 @@ function NavItem({ to, label, prefix }: { to: string; label: string; prefix?: bo
   )
 }
 
-function LangSwitch() {
-  const { lang, toggleLang } = useLanguage()
-  return (
-    <button
-      onClick={toggleLang}
-      aria-label="Switch language"
-      style={{
-        fontFamily: "'JetBrains Mono', monospace",
-        fontSize: "0.75rem",
-        fontWeight: 500,
-        letterSpacing: "0.06em",
-        color: "#6b7280",
-        background: "transparent",
-        border: "0.5px solid rgba(0,0,0,0.12)",
-        padding: "0.35rem 0.7rem",
-        cursor: "pointer",
-        transition: "border-color 0.2s, color 0.2s",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "#3B82F6"
-        e.currentTarget.style.color = "#3B82F6"
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = "rgba(0,0,0,0.12)"
-        e.currentTarget.style.color = "#6b7280"
-      }}
-    >
-      {lang === "fr" ? "EN" : "FR"}
-    </button>
-  )
-}
-
-
+// ─── Layout ───────────────────────────────────────────────────────────────────
 export default function Layout() {
   const location = useLocation()
-  const { t } = useTranslation()
 
+  // Loading screen: only on first visit per session
   const [loadPhase, setLoadPhase] = useState<"loading" | "exiting" | "done">(() => {
     if (typeof sessionStorage !== "undefined" && sessionStorage.getItem("mq-loaded")) {
       return "done"
@@ -88,7 +56,7 @@ export default function Layout() {
   const { displayed, done } = useTypewriter(
     "Mehdi",
     95,
-    loadPhase === "loading" ? 700 : 99999
+    loadPhase === "loading" ? 700 : 99999 // skip animation if already loaded
   )
 
   const handleEnter = () => {
@@ -97,8 +65,11 @@ export default function Layout() {
     setTimeout(() => setLoadPhase("done"), 850)
   }
 
+  // Page transition key — fade content on route change
   const [pageKey, setPageKey] = useState(location.pathname)
   const [pageVisible, setPageVisible] = useState(true)
+
+  // Mobile menu open/close state
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -120,6 +91,7 @@ export default function Layout() {
     <>
       <style>{GLOBAL_CSS}</style>
 
+      {/* ── Loading Screen ───────────────────────────────────────────── */}
       {loadPhase !== "done" && (
         <div
           style={{
@@ -136,6 +108,7 @@ export default function Layout() {
             transition: "opacity 0.85s cubic-bezier(0.16,1,0.3,1)",
           }}
         >
+          {/* Subtle grid */}
           <div
             style={{
               position: "absolute",
@@ -147,6 +120,7 @@ export default function Layout() {
             }}
           />
 
+          {/* Typewriter name */}
           <div
             style={{
               fontFamily: "'Inter', sans-serif",
@@ -175,6 +149,7 @@ export default function Layout() {
             />
           </div>
 
+          {/* Enter button */}
           <button
             onClick={handleEnter}
             style={{
@@ -201,11 +176,12 @@ export default function Layout() {
               e.currentTarget.style.color = "rgba(255,255,255,0.55)"
             }}
           >
-            {t("layout.enter")}
+            [ Enter ]
           </button>
         </div>
       )}
 
+      {/* ── Shell ────────────────────────────────────────────────────── */}
       <div
         style={{
           minHeight: "100vh",
@@ -217,6 +193,7 @@ export default function Layout() {
           visibility: loadPhase === "loading" ? "hidden" : "visible",
         }}
       >
+        {/* Nav */}
         <nav
           style={{
             position: "sticky",
@@ -252,39 +229,37 @@ export default function Layout() {
               mehdiqament.dev
             </NavLink>
 
-            <div className="hide-sm" style={{ display: "flex", gap: "2.25rem", alignItems: "center" }}>
-              <NavItem to="/" label={t("nav.home")} />
-              <NavItem to="/competences" label={t("nav.competences")} />
-              <NavItem to="/parcours" label={t("nav.parcours")} />
-              <NavItem to="/projets" label={t("nav.projets")} prefix />
-              <NavItem to="/alternance" label={t("nav.alternance")} />
-              <NavItem to="/contact" label={t("nav.contact")} />
-              <LangSwitch />
+            <div className="hide-sm" style={{ display: "flex", gap: "2.25rem" }}>
+              <NavItem to="/" label="Accueil" />
+              <NavItem to="/competences" label="Compétences" />
+              <NavItem to="/parcours" label="Parcours" />
+              <NavItem to="/projets" label="Projets" prefix />
+              <NavItem to="/alternance" label="Alternance" />
+              <NavItem to="/contact" label="Contact" />
             </div>
 
-            <div className="show-sm" style={{ alignItems: "center", gap: "0.625rem" }}>
-              <LangSwitch />
-              <button
-                className={`hamburger-btn${menuOpen ? " is-open" : ""}`}
-                aria-label="Menu"
-                aria-expanded={menuOpen}
-                onClick={() => setMenuOpen((v) => !v)}
-              >
-                <span />
-              </button>
-            </div>
+            <button
+              className={`hamburger-btn${menuOpen ? " is-open" : ""}`}
+              aria-label="Menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+            >
+              <span />
+            </button>
           </div>
 
+          {/* Mobile dropdown menu */}
           <div className={`mobile-menu${menuOpen ? " is-open" : ""}`}>
-            <NavItem to="/" label={t("nav.home")} />
-            <NavItem to="/competences" label={t("nav.competences")} />
-            <NavItem to="/parcours" label={t("nav.parcours")} />
-            <NavItem to="/projets" label={t("nav.projets")} prefix />
-            <NavItem to="/alternance" label={t("nav.alternance")} />
-            <NavItem to="/contact" label={t("nav.contact")} />
+            <NavItem to="/" label="Accueil" />
+            <NavItem to="/competences" label="Compétences" />
+            <NavItem to="/parcours" label="Parcours" />
+            <NavItem to="/projets" label="Projets" prefix />
+            <NavItem to="/alternance" label="Alternance" />
+            <NavItem to="/contact" label="Contact" />
           </div>
         </nav>
 
+        {/* Page content with cross-fade */}
         <main
           key={pageKey}
           style={{
@@ -296,6 +271,7 @@ export default function Layout() {
           <Outlet />
         </main>
 
+        {/* Footer */}
         <footer
           style={{
             borderTop: "0.5px solid rgba(0,0,0,0.07)",
@@ -311,7 +287,7 @@ export default function Layout() {
               letterSpacing: "0.06em",
             }}
           >
-            {t("layout.footer")}
+            mehdiqament.dev · 2026
           </span>
         </footer>
       </div>

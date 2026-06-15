@@ -1,7 +1,6 @@
 import { Link } from "react-router"
 import { ArrowLeft } from "lucide-react"
 import { FadeUp, CodeButton } from "../app/shared"
-import { useTranslation } from "../app/useTranslation"
 
 const MONO: React.CSSProperties = { fontFamily: "'JetBrains Mono', monospace" }
 const SANS: React.CSSProperties = { fontFamily: "'Inter', sans-serif" }
@@ -25,12 +24,14 @@ const techStack = [
   { name: "Makefile", abbr: "mk" },
 ]
 
+const features = [
+  "Vérification de la validité des trames NMEA (checksum, format)",
+  "Extraction et décodage des champs des trames $GPRMC et $GPGGA",
+  "Conversion des coordonnées GPS du format NMEA (degrés-minutes) vers les degrés décimaux",
+  "Formatage et affichage de l'heure UTC",
+]
+
 export default function GpsNmeaDetail() {
-  const { t, tList } = useTranslation()
-
-  // On extrait le tableau des fonctionnalités traduit dynamiquement
-  const features = tList("gpsNmea.features")
-
   return (
     <article style={{ padding: "5rem 2rem 7rem" }}>
       <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
@@ -54,7 +55,7 @@ export default function GpsNmeaDetail() {
             onMouseLeave={(e) => (e.currentTarget.style.color = "#9ca3af")}
           >
             <ArrowLeft size={14} strokeWidth={1.5} />
-            {t("gpsNmea.backToProjects")}
+            Projets
           </Link>
         </FadeUp>
 
@@ -70,7 +71,7 @@ export default function GpsNmeaDetail() {
               marginBottom: "1rem",
             }}
           >
-            {t("gpsNmea.context")}
+            R2.04 · Projet scolaire
           </div>
           <h1
             style={{
@@ -83,7 +84,7 @@ export default function GpsNmeaDetail() {
               margin: "0 0 2rem",
             }}
           >
-            {t("gpsNmea.title")}
+            Analyseur de trames<br />GPS NMEA
           </h1>
         </FadeUp>
 
@@ -102,7 +103,7 @@ export default function GpsNmeaDetail() {
         {/* Voir le code */}
         <FadeUp delay={120} entryDelay={60}>
           <div style={{ marginBottom: "3rem" }}>
-            <CodeButton href="https://github.com/mehdiqament/Sujet1_Yahyaoui-Benataya_Bouin/tree/master/projet_gps" label={t("gpsNmea.viewCode")} />
+            <CodeButton href="https://github.com/mehdiqament/Sujet1_Yahyaoui-Benataya_Bouin/tree/master/projet_gps" />
           </div>
         </FadeUp>
 
@@ -111,7 +112,7 @@ export default function GpsNmeaDetail() {
 
         {/* Section - Le projet */}
         <FadeUp delay={0}>
-          <SectionBlock label={t("gpsNmea.sections.project")}>
+          <SectionBlock label="Le projet">
             <p
               style={{
                 ...SANS,
@@ -121,14 +122,16 @@ export default function GpsNmeaDetail() {
                 margin: 0,
               }}
             >
-              {t("gpsNmea.description")}
+              Réalisé dans le cadre de la ressource R2.04, ce projet implémente un parseur de trames GPS NMEA en langage C. Il lit des trames issues d'un récepteur GPS, vérifie leur intégrité par checksum, puis extrait et met en forme les données de position et de temps contenues dans les formats{" "}
+              <span style={{ color: "#0D0D0D", fontWeight: 500 }}>$GPRMC</span> et{" "}
+              <span style={{ color: "#0D0D0D", fontWeight: 500 }}>$GPGGA</span>.
             </p>
           </SectionBlock>
         </FadeUp>
 
         {/* Section - Fonctionnalités */}
         <FadeUp delay={60}>
-          <SectionBlock label={t("gpsNmea.sections.features")}>
+          <SectionBlock label="Fonctionnalités">
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.875rem" }}>
               {features.map((f, i) => (
                 <li
@@ -162,7 +165,7 @@ export default function GpsNmeaDetail() {
 
         {/* Section - Stack technique */}
         <FadeUp delay={120}>
-          <SectionBlock label={t("gpsNmea.sections.tech")}>
+          <SectionBlock label="Stack technique">
             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
               {techStack.map((s) => (
                 <div

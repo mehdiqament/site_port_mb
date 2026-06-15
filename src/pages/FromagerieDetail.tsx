@@ -1,7 +1,6 @@
 import { Link } from "react-router"
 import { ArrowLeft } from "lucide-react"
 import { FadeUp, CodeButton } from "../app/shared"
-import { useTranslation } from "../app/useTranslation"
 
 const MONO: React.CSSProperties = { fontFamily: "'JetBrains Mono', monospace" }
 const SANS: React.CSSProperties = { fontFamily: "'Inter', sans-serif" }
@@ -19,6 +18,13 @@ const tagStyle: React.CSSProperties = {
   transition: "border-color 0.2s, color 0.2s",
 }
 
+const features = [
+  "Catalogue de fromages avec filtres par type de lait et format (demi / entier)",
+  "Panier d'achat avec respect des limites de stock et options de modification ou vidage",
+  "Formulaire de saisie des informations client",
+  "Génération de facture récapitulative avec option d'impression",
+]
+
 const techStack = [
   { name: "Java", abbr: "☕" },
   { name: "Swing", abbr: "UI" },
@@ -26,11 +32,6 @@ const techStack = [
 ]
 
 export default function FromagerieDetail() {
-  const { t, tList } = useTranslation()
-
-  // On récupère le tableau de fonctionnalités traduit dynamiquement !
-  const features = tList("fromagerie.features")
-
   return (
     <article style={{ padding: "5rem 2rem 7rem" }}>
       <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
@@ -54,7 +55,7 @@ export default function FromagerieDetail() {
             onMouseLeave={(e) => (e.currentTarget.style.color = "#9ca3af")}
           >
             <ArrowLeft size={14} strokeWidth={1.5} />
-            {t("fromagerie.backToProjects")}
+            Projets
           </Link>
         </FadeUp>
 
@@ -70,7 +71,7 @@ export default function FromagerieDetail() {
               marginBottom: "1rem",
             }}
           >
-            {t("fromagerie.context")}
+            SAÉ · Projet scolaire
           </div>
           <h1
             style={{
@@ -83,8 +84,7 @@ export default function FromagerieDetail() {
               margin: "0 0 2rem",
             }}
           >
-            {/* Si tu as séparé le titre avec un saut de ligne dans tes trads */}
-            {t("fromagerie.title")}
+            Application de vente<br />Fromagerie 🧀
           </h1>
         </FadeUp>
 
@@ -103,7 +103,7 @@ export default function FromagerieDetail() {
         {/* Voir le code */}
         <FadeUp delay={120} entryDelay={60}>
           <div style={{ marginBottom: "3rem" }}>
-            <CodeButton href="https://github.com/mehdiqament/sae-vente-fromages" label={t("fromagerie.viewCode")} />
+            <CodeButton href="https://github.com/mehdiqament/sae-vente-fromages" />
           </div>
         </FadeUp>
 
@@ -112,7 +112,7 @@ export default function FromagerieDetail() {
 
         {/* Section - Le projet */}
         <FadeUp delay={0}>
-          <SectionBlock label={t("fromagerie.sections.project")}>
+          <SectionBlock label="Le projet">
             <p
               style={{
                 ...SANS,
@@ -122,14 +122,15 @@ export default function FromagerieDetail() {
                 margin: 0,
               }}
             >
-              {t("fromagerie.description")}
+              Réalisée dans le cadre d'une SAÉ (Situation d'Apprentissage et d'Évaluation), cette application simule une boutique en ligne de fromages. Développée entièrement en Java avec l'interface graphique Swing, elle repose sur une architecture multi-fenêtres utilisant des{" "}
+              <span style={{ color: "#0D0D0D", fontWeight: 500 }}>JDialog</span> imbriquées pour chaque étape du parcours client - navigation du catalogue, gestion du panier, saisie des informations et édition de la facture.
             </p>
           </SectionBlock>
         </FadeUp>
 
         {/* Section - Fonctionnalités */}
         <FadeUp delay={60}>
-          <SectionBlock label={t("fromagerie.sections.features")}>
+          <SectionBlock label="Fonctionnalités">
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.875rem" }}>
               {features.map((f, i) => (
                 <li
@@ -163,7 +164,7 @@ export default function FromagerieDetail() {
 
         {/* Section - Stack technique */}
         <FadeUp delay={120}>
-          <SectionBlock label={t("fromagerie.sections.tech")}>
+          <SectionBlock label="Stack technique">
             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
               {techStack.map((s) => (
                 <div

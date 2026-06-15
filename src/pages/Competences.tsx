@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { FadeUp, SectionHeader, useSkills } from "../app/shared"
-import { useTranslation } from "../app/useTranslation"
+import { FadeUp, SectionHeader, skills } from "../app/shared"
 
 // Animates a progress bar from 0 → target when it enters the viewport
 function AnimatedBar({ pct }: { pct: number }) {
@@ -46,14 +45,10 @@ function AnimatedBar({ pct }: { pct: number }) {
 }
 
 export default function Competences() {
-  const { t } = useTranslation()
-  const skills = useSkills() // On récupère la liste des compétences traduite automatiquement !
-
   return (
     <section style={{ padding: "7rem 2rem" }}>
       <div style={{ maxWidth: "68rem", margin: "0 auto" }}>
-        {/* Ici on remplace les textes en dur par les clés de traduction */}
-        <SectionHeader label={t("competences.label")} title={t("competences.title")} />
+        <SectionHeader label="Stack technique" title="Compétences" />
 
         <div>
           {skills.map((skill, i) => (

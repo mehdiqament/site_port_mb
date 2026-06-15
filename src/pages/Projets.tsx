@@ -1,7 +1,6 @@
 import { Link } from "react-router"
 import { ArrowUpRight } from "lucide-react"
 import { FadeUp, SectionHeader } from "../app/shared"
-import { useTranslation } from "../app/useTranslation"
 
 const TAG_STYLE: React.CSSProperties = {
   fontFamily: "'JetBrains Mono', monospace",
@@ -80,9 +79,7 @@ function ProjectCard({
 }
 
 // ─── Coming-soon card ─────────────────────────────────────────────────────────
-function ComingSoonCard({ badge }: { badge: string }) {
-  const { t } = useTranslation()
-
+function ComingSoonCard({ year, badge }: { year: string; badge: string }) {
   return (
     <div
       style={{
@@ -101,15 +98,15 @@ function ComingSoonCard({ badge }: { badge: string }) {
             {badge}
           </div>
           <h3 style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", fontWeight: 500, color: "#9ca3af", letterSpacing: "-0.005em", lineHeight: 1.4, margin: 0 }}>
-            {t("projets.comingSoon.title")}
+            Prochain projet
           </h3>
         </div>
         <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.1em", color: "#9ca3af", border: "0.5px solid rgba(0,0,0,0.1)", padding: "0.2rem 0.6rem", flexShrink: 0, textTransform: "uppercase" }}>
-          {t("projets.comingSoon.badge")}
+          À venir
         </span>
       </div>
       <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#9ca3af", lineHeight: "1.65", margin: 0, flex: 1 }}>
-        {t("projets.comingSoon.desc")}
+        Un nouveau projet arrivera lors de mon entrée en spécialisation Données & IA.
       </p>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
         {["-", "-", "-"].map((t, i) => <span key={i} style={TAG_MUTED_STYLE}>{t}</span>)}
@@ -141,35 +138,33 @@ function YearSection({ year, sub, children }: { year: string; sub: string; child
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function Projets() {
-  const { t } = useTranslation()
-
   return (
     <section style={{ padding: "7rem 2rem" }}>
       <div style={{ maxWidth: "68rem", margin: "0 auto" }}>
-        <SectionHeader label={t("projets.label")} title={t("projets.title")} />
+        <SectionHeader label="Réalisations" title="Projets" />
 
         {/* 2025-2026 */}
-        <YearSection year="2025 - 2026" sub={t("projets.years.y1")}>
+        <YearSection year="2025 - 2026" sub="BUT Informatique - 1ère année">
           <ProjectCard
             to="/projets/fromagerie"
-            title={t("fromagerie.titleCard")}
-            desc={t("fromagerie.descCard")}
+            title="Application de vente - Fromagerie 🧀"
+            desc="Application Java Swing simulant un site de vente de fromages : gestion du stock, panier, filtres, génération de facture."
             tags={["Java", "Swing", "JSON"]}
             badge="SAÉ"
           />
           <ProjectCard
             to="/projets/gps-nmea"
-            title={t("gpsNmea.titleCard")}
-            desc={t("gpsNmea.descCard")}
+            title="Analyseur de trames GPS NMEA 🛰️"
+            desc="Parseur en langage C de trames GPS NMEA : vérification, extraction des champs, conversion de coordonnées et formatage de l'heure."
             tags={["C", "Shell", "Makefile"]}
             badge="SAÉ"
           />
         </YearSection>
 
         {/* 2026-2027 */}
-        <YearSection year="2026 - 2027" sub={t("projets.years.y2")}>
-          <ComingSoonCard badge={t("projets.semesters.s1")} />
-          <ComingSoonCard badge={t("projets.semesters.s2")} />
+        <YearSection year="2026 - 2027" sub="BUT Informatique - 2ème année · Données & IA">
+          <ComingSoonCard year="2026-2027" badge="1er semestre" />
+          <ComingSoonCard year="2026-2027" badge="2ème semestre" />
         </YearSection>
       </div>
     </section>
