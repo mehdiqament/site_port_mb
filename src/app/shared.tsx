@@ -1,0 +1,343 @@
+import { useEffect, useRef, useState } from "react"
+import { Github } from "lucide-react"
+
+// ─── Voir le code button ──────────────────────────────────────────────────────
+export function CodeButton({ href }: { href: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "0.5rem",
+        fontFamily: "'Inter', sans-serif",
+        fontSize: "0.8125rem",
+        fontWeight: 500,
+        color: "#374151",
+        textDecoration: "none",
+        border: "0.5px solid rgba(0,0,0,0.18)",
+        padding: "0.55rem 1.125rem",
+        letterSpacing: "0.02em",
+        transition: "border-color 0.2s, color 0.2s, box-shadow 0.2s",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = "#3B82F6"
+        e.currentTarget.style.color = "#3B82F6"
+        e.currentTarget.style.boxShadow = "0 2px 12px rgba(59,130,246,0.1)"
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = "rgba(0,0,0,0.18)"
+        e.currentTarget.style.color = "#374151"
+        e.currentTarget.style.boxShadow = "none"
+      }}
+    >
+      <Github size={14} strokeWidth={1.5} />
+      Voir le code
+    </a>
+  )
+}
+
+// ─── FadeUp ─────────────────────────────────────────────────────────────────
+export function FadeUp({
+  children,
+  className = "",
+  delay = 0,
+  entryDelay = 0,
+}: {
+  children: React.ReactNode
+  className?: string
+  delay?: number
+  entryDelay?: number
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [vis, setVis] = useState(false)
+
+  useEffect(() => {
+    const boot = setTimeout(() => {
+      const obs = new IntersectionObserver(
+        ([e]) => {
+          if (e.isIntersecting) {
+            setVis(true)
+            obs.disconnect()
+          }
+        },
+        { threshold: 0.08 }
+      )
+      if (ref.current) obs.observe(ref.current)
+      return () => obs.disconnect()
+    }, entryDelay)
+    return () => clearTimeout(boot)
+  }, [entryDelay])
+
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: vis ? 1 : 0,
+        transform: vis ? "translateY(0)" : "translateY(22px)",
+        transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
+      }}
+    >
+      {children}
+    </div>
+  )
+}
+
+// ─── Section header ──────────────────────────────────────────────────────────
+export function SectionHeader({ label, title }: { label: string; title: string }) {
+  return (
+    <FadeUp>
+      <div
+        style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: "0.7rem",
+          letterSpacing: "0.15em",
+          color: "#9ca3af",
+          textTransform: "uppercase",
+          marginBottom: "0.875rem",
+        }}
+      >
+        {label}
+      </div>
+      <h2
+        style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "clamp(2rem, 4vw, 2.75rem)",
+          fontWeight: 300,
+          color: "#0D0D0D",
+          marginBottom: "4.5rem",
+          letterSpacing: "-0.015em",
+        }}
+      >
+        {title}
+      </h2>
+    </FadeUp>
+  )
+}
+
+// ─── Page wrapper (applies fade-in per page) ─────────────────────────────────
+export function PageContent({
+  children,
+  style,
+}: {
+  children: React.ReactNode
+  style?: React.CSSProperties
+}) {
+  const [vis, setVis] = useState(false)
+  useEffect(() => {
+    const t = setTimeout(() => setVis(true), 30)
+    return () => clearTimeout(t)
+  }, [])
+  return (
+    <div
+      style={{
+        opacity: vis ? 1 : 0,
+        transform: vis ? "translateY(0)" : "translateY(14px)",
+        transition: "opacity 0.55s cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.16,1,0.3,1)",
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  )
+}
+
+// ─── Shared data ─────────────────────────────────────────────────────────────
+export const skills = [
+  {
+    name: "Java",
+    abbr: "☕",
+    pct: 85,
+    desc: "Programmation orientée objet, applications Swing multi-fenêtres (JDialog), gestion de stock et panier, lecture/écriture JSON",
+  },
+  {
+    name: "SQL",
+    abbr: "⬡",
+    pct: 75,
+    desc: "Requêtes Oracle SQL, jointures, sous-requêtes, vues, séquences",
+  },
+  {
+    name: "UML / Modélisation",
+    abbr: "◈",
+    pct: 80,
+    desc: "Diagrammes de classes et de séquence, modélisation avec Modelio",
+  },
+  {
+    name: "HTML / CSS",
+    abbr: "<>",
+    pct: 70,
+    desc: "Mise en page, structure sémantique, mise en forme responsive de base",
+  },
+  {
+    name: "Shell / Linux",
+    abbr: "$_",
+    pct: 65,
+    desc: "Administration de VM Debian, configuration Apache2, SSH, scripts bash",
+  },
+  {
+    name: "Gestion de projet",
+    abbr: "▦",
+    pct: 65,
+    desc: "Planification Gantt, méthodologie SAÉ, coordination d'équipe",
+  },
+  {
+    name: "Algorithmique & Graphes",
+    abbr: "∞",
+    pct: 55,
+    desc: "Python, algorithmes de Dijkstra et Bellman-Ford, structures de données",
+  },
+  {
+    name: "Python",
+    abbr: "py",
+    pct: 40,
+    desc: "Scripts d'analyse de données avec numpy",
+  },
+  {
+    name: "C",
+    abbr: "©",
+    pct: 55,
+    desc: "Programmation bas niveau, parsing de fichiers (trames GPS NMEA)",
+  },
+]
+
+// kept for the Fromagerie detail page
+export const primarySkills = [
+  { name: "Java", abbr: "☕" },
+  { name: "SQL", abbr: "⬡" },
+  { name: "Shell", abbr: "$_" },
+]
+export const secondarySkills = [
+  { name: "HTML / CSS", abbr: "<>" },
+  { name: "Python", abbr: "py" },
+]
+
+export const timeline = [
+  {
+    year: "2025",
+    title: "Bac STI2D",
+    sub: "Lycée",
+    desc: "Mention Assez Bien - Sciences et Technologies de l'Industrie et du Développement Durable.",
+    active: false,
+  },
+  {
+    year: "2025–26",
+    title: "BUT Informatique - 1ère année",
+    sub: "Université Paul Sabatier, Toulouse",
+    desc: "Fondamentaux du développement logiciel, algorithmique et bases de données relationnelles.",
+    active: false,
+  },
+  {
+    year: "2026–27",
+    title: "BUT Informatique - 2ème année",
+    sub: "Spécialisation Données & IA",
+    desc: "Approfondissement en data engineering, machine learning et traitement de données massives.",
+    active: true,
+  },
+]
+
+export const contacts = [
+  { label: "Email", text: "mehdi@mehdiqament.dev", href: "mailto:mehdi@mehdiqament.dev" },
+  { label: "GitHub", text: "mehdiqament", href: "https://github.com/mehdiqament" },
+  { label: "Discord", text: "mehdiqament", href: "#" },
+]
+
+export const CODE_TEXTURE = `SELECT s.name, AVG(g.score) AS avg_score
+FROM students s JOIN grades g ON s.id = g.student_id
+WHERE s.year = 2 AND s.specialization = 'Données & IA'
+GROUP BY s.name ORDER BY avg_score DESC;
+
+public class DataPipeline implements Runnable {
+    private final String name = "Mehdi";
+    private List<String> skills = List.of("Java","SQL","Shell");
+    public void run() { this.process(new Dataset("toulouse.csv")); }
+    public Model train(Dataset d, int epochs) {
+        for (int i = 0; i < epochs; i++) { model.fit(d.batch(32)); }
+        return model; }
+}
+
+SELECT COUNT(*) FROM projects WHERE status = 'completed' AND owner = 'mehdiqament';
+import java.util.stream.Collectors;
+List<Skill> top = skills.stream().filter(s -> s.level > 3)
+    .sorted(Comparator.comparing(Skill::getLevel).reversed())
+    .collect(Collectors.toList());
+
+SELECT domain, COUNT(*) FROM alternance
+WHERE year = 2026 AND location = 'Toulouse'
+GROUP BY domain HAVING COUNT(*) > 0;
+
+#!/bin/bash
+for f in data/*.csv; do python3 clean.py "$f" && echo "✓ $f"; done
+`
+
+// ─── Global CSS string (injected once by Layout) ─────────────────────────────
+export const GLOBAL_CSS = `
+  @keyframes cursor-blink {
+    0%,49% { opacity:1; }
+    50%,100% { opacity:0; }
+  }
+  html { scroll-behavior:smooth; font-family:'Inter',system-ui,sans-serif; }
+  ::-webkit-scrollbar { width:3px; }
+  ::-webkit-scrollbar-track { background:transparent; }
+  ::-webkit-scrollbar-thumb { background:rgba(0,0,0,0.12); border-radius:2px; }
+
+  .nav-link {
+    color:#6b7280; text-decoration:none; font-size:0.8125rem;
+    letter-spacing:0.02em; transition:color 0.2s;
+  }
+  .nav-link:hover { color:#3B82F6; }
+  .nav-link-active { color:#3B82F6 !important; }
+
+  .btn-primary {
+    background:#3B82F6; color:#fff; border:none;
+    padding:0.75rem 2rem; font-family:inherit; font-size:0.875rem;
+    letter-spacing:0.04em; cursor:pointer; text-decoration:none;
+    display:inline-block; transition:background 0.2s;
+  }
+  .btn-primary:hover { background:#2563EB; }
+
+  .btn-ghost {
+    background:transparent; color:#374151;
+    border:0.5px solid rgba(0,0,0,0.18); padding:0.75rem 2rem;
+    font-family:inherit; font-size:0.875rem; letter-spacing:0.04em;
+    cursor:pointer; text-decoration:none; display:inline-block;
+    transition:border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color:#3B82F6; color:#3B82F6; }
+
+  .skill-pill-lg {
+    display:flex; align-items:center; gap:0.625rem;
+    border:0.5px solid rgba(0,0,0,0.12); padding:0.625rem 1.375rem;
+    font-size:0.9375rem; font-weight:500; color:#1f2937; cursor:default;
+    transition:border-color 0.2s, color 0.2s;
+  }
+  .skill-pill-lg:hover { border-color:#3B82F6; color:#3B82F6; }
+
+  .skill-pill-sm {
+    display:flex; align-items:center; gap:0.5rem;
+    border:0.5px solid rgba(0,0,0,0.08); padding:0.5rem 1rem;
+    font-size:0.8125rem; font-weight:400; color:#6b7280; cursor:default;
+    transition:border-color 0.2s, color 0.2s;
+  }
+  .skill-pill-sm:hover { border-color:#93c5fd; color:#3B82F6; }
+
+  .contact-link {
+    display:flex; align-items:center; gap:0.75rem;
+    padding:0.875rem 1.5rem; border:0.5px solid rgba(0,0,0,0.1);
+    text-decoration:none; color:#374151; font-size:0.875rem;
+    background:#fff; box-shadow:0 1px 4px rgba(0,0,0,0.04);
+    transition:border-color 0.2s, color 0.2s, box-shadow 0.2s;
+  }
+  .contact-link:hover {
+    border-color:#3B82F6; color:#3B82F6;
+    box-shadow:0 2px 16px rgba(59,130,246,0.12);
+  }
+
+  @media (max-width:640px) {
+    .hero-title { font-size:clamp(4rem,22vw,10rem) !important; }
+    .hide-sm { display:none !important; }
+    .contacts-row { flex-direction:column; }
+  }
+`
