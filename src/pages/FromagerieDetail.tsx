@@ -274,6 +274,27 @@ export default function FromagerieDetail() {
   </SectionBlock>
 </FadeUp>
 
+        {/* Section - Démonstration */}
+<FadeUp delay={0}>
+  <SectionBlock label="Démonstration">
+    <div id="demo">
+      <div style={{ width: "100%", aspectRatio: "16/9", marginBottom: "0", background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <iframe
+          src="https://res.cloudinary.com/dk2iacpoa/video/upload/v1781564272/rec_c_mqebm0.mp4"
+          style={{ width: "100%", height: "100%", border: "none" }}
+          allow="autoplay; fullscreen"
+          allowFullScreen
+        />
+      </div>
+      <div style={{ background: "#f9fafb", border: "0.5px solid rgba(0,0,0,0.07)", borderTop: "none", padding: "1.25rem 1.5rem" }}>
+        <p style={{ ...SANS, fontSize: "0.9375rem", color: "#4b5563", margin: 0, lineHeight: "1.6" }}>
+          Visuel du parseur en action. Le programme réalise une validation stricte : toute trame copiée du web incomplète ou ayant un checksum erroné provoque un échec de lecture. Une fois les trames valides détectées, l'algorithme extrait et convertit avec succès les coordonnées géographiques, illustré ici par le décodage précis des positions de <span style={{ color: "#0D0D0D", fontWeight: 500 }}>Paris</span> et <span style={{ color: "#0D0D0D", fontWeight: 500 }}>New York</span>.
+        </p>
+      </div>
+    </div>
+  </SectionBlock>
+</FadeUp>
+
       </div>
     </article>
   )
