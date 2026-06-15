@@ -1,6 +1,6 @@
 import { Link } from "react-router"
 import { FadeUp, CODE_TEXTURE } from "../app/shared"
-import { useTranslation } from "./useTranslation" // Ajuste le chemin selon ta structure
+import { useTranslation } from "../app/useTranslation"
 
 const HERO_ENTRY = 120 // ms after page mount before fade-ups start
 
