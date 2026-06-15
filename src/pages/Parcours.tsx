@@ -1,10 +1,14 @@
 import { FadeUp, SectionHeader, timeline } from "../app/shared"
+import { useTranslation } from "./useTranslation" // Ajuste le chemin selon ton projet
 
 export default function Parcours() {
+  const { t } = useTranslation()
+
   return (
     <section style={{ padding: "7rem 2rem" }}>
       <div style={{ maxWidth: "68rem", margin: "0 auto" }}>
-        <SectionHeader label="Formation" title="Parcours" />
+        {/* En-tête de section traduit */}
+        <SectionHeader label={t("parcours.label")} title={t("parcours.title")} />
 
         <div style={{ position: "relative" }}>
           {/* Vertical gradient line */}
@@ -31,7 +35,7 @@ export default function Parcours() {
                   alignItems: "flex-start",
                 }}
               >
-                {/* Year */}
+                {/* Year - Reste fixe en général */}
                 <div
                   style={{
                     width: "4.5rem",
@@ -69,7 +73,7 @@ export default function Parcours() {
                   />
                 </div>
 
-                {/* Content */}
+                {/* Content traduit dynamiquement par index */}
                 <div style={{ flex: 1, paddingLeft: "1.5rem" }}>
                   <div
                     style={{
@@ -81,7 +85,7 @@ export default function Parcours() {
                       letterSpacing: "-0.005em",
                     }}
                   >
-                    {item.title}
+                    {t(`parcours.items.${i}.title`)}
                   </div>
                   <div
                     style={{
@@ -92,7 +96,7 @@ export default function Parcours() {
                       fontWeight: 400,
                     }}
                   >
-                    {item.sub}
+                    {t(`parcours.items.${i}.sub`)}
                   </div>
                   <div
                     style={{
@@ -103,7 +107,7 @@ export default function Parcours() {
                       maxWidth: "36rem",
                     }}
                   >
-                    {item.desc}
+                    {t(`parcours.items.${i}.desc`)}
                   </div>
                 </div>
               </div>
