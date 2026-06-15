@@ -250,6 +250,41 @@ export default function FromagerieDetail() {
           </SectionBlock>
         </FadeUp>
 
+        {/* Section - Fonctionnalités démontrées */}
+<FadeUp delay={60}>
+  <SectionBlock label="Ce que montre la vidéo">
+    <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.875rem" }}>
+      {[
+        "Panier vide : un message s'affiche automatiquement si le panier est vide lors de la validation.",
+        "Trois types de fromages disponibles : vache, chèvre et brebis.",
+        "Stock limité : un message d'avertissement s'affiche si la quantité demandée dépasse le stock, et la mention « Rupture » apparaît lorsque le stock atteint zéro.",
+        "Modification de quantité dans le panier : le stock du fromage correspondant se met à jour en temps réel.",
+        "Frais de port : offerts pour toute commande supérieure à 120 €, sinon des frais s'appliquent.",
+        "Trois expéditeurs disponibles : Chronorelais, Chronofresh et Colissimo.",
+        "Formulaire client complet : nom, prénom, adresse, code postal, ville, téléphone, e-mail, mode de paiement et inscription à la newsletter.",
+        "Fenêtre facture : récapitulatif complet avec coordonnées, contenu du panier, montant des fromages et frais de port si la commande est inférieure à 120 €.",
+        "Interface responsive : toutes les fenêtres s'adaptent à la taille de l'écran.",
+      ].map((f, i) => (
+        <li
+          key={i}
+          style={{
+            ...SANS,
+            display: "flex",
+            alignItems: "flex-start",
+            gap: "0.875rem",
+            fontSize: "0.9375rem",
+            color: "#4b5563",
+            lineHeight: "1.65",
+          }}
+        >
+          <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: "#3B82F6", flexShrink: 0, marginTop: "0.55em" }} />
+          {f}
+        </li>
+      ))}
+    </ul>
+  </SectionBlock>
+</FadeUp>
+
       </div>
     </article>
   )
