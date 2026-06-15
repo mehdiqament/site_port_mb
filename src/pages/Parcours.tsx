@@ -1,7 +1,8 @@
-import { FadeUp, SectionHeader, timeline } from "../app/shared"
+import { FadeUp, SectionHeader, useTimeline } from "../app/shared"
 import { useTranslation } from "../app/useTranslation"
 
 export default function Parcours() {
+  const timeline = useTimeline()
   const { t } = useTranslation()
 
   return (
