@@ -223,7 +223,7 @@ export default function Layout() {
               <NavItem to="/competences" label="Compétences" />
               <NavItem to="/parcours" label="Parcours" />
               <NavItem to="/projets" label="Projets" prefix />
-              <NavItem to="/alternance" label="Alternance" />
+              <NavItem to="/stage" label="Stage" />
               <NavItem to="/contact" label="Contact" />
             </div>
 
@@ -243,7 +243,7 @@ export default function Layout() {
             <NavItem to="/competences" label="Compétences" />
             <NavItem to="/parcours" label="Parcours" />
             <NavItem to="/projets" label="Projets" prefix />
-            <NavItem to="/alternance" label="Alternance" />
+            <NavItem to="/stage" label="Stage" />
             <NavItem to="/contact" label="Contact" />
           </div>
         </nav>

@@ -6,7 +6,7 @@ import Parcours from "../pages/Parcours"
 import Projets from "../pages/Projets"
 import FromagerieDetail from "../pages/FromagerieDetail"
 import GpsNmeaDetail from "../pages/GpsNmeaDetail"
-import Alternance from "../pages/Alternance"
+import Stage from "../pages/Stage"
 import Contact from "../pages/Contact"
 
 export const router = createBrowserRouter([
@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
       { path: "projets", Component: Projets },
       { path: "projets/fromagerie", Component: FromagerieDetail },
       { path: "projets/gps-nmea", Component: GpsNmeaDetail },
-      { path: "alternance", Component: Alternance },
+      { path: "stage", Component: Stage },
       { path: "contact", Component: Contact },
     ],
   },
