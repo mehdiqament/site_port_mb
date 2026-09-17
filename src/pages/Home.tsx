@@ -1,5 +1,5 @@
 import { Link } from "react-router"
-import { FadeUp, CODE_TEXTURE } from "../app/shared"
+import { FadeUp } from "../app/shared"
 
 const HERO_ENTRY = 120 // ms after page mount before fade-ups start
 
@@ -15,27 +15,6 @@ export default function Home() {
         background: "linear-gradient(158deg,#ffffff 60%,#f0f6ff 100%)",
       }}
     >
-      {/* Code texture */}
-      <pre
-        aria-hidden
-        style={{
-          position: "absolute",
-          inset: 0,
-          overflow: "hidden",
-          fontSize: "0.6875rem",
-          lineHeight: "1.85",
-          color: "#000",
-          opacity: 0.042,
-          fontFamily: "'JetBrains Mono', monospace",
-          padding: "3rem 2rem",
-          pointerEvents: "none",
-          userSelect: "none",
-          whiteSpace: "pre-wrap",
-          wordBreak: "break-word",
-        }}
-      >
-        {CODE_TEXTURE + CODE_TEXTURE + CODE_TEXTURE}
-      </pre>
 
       <div
         style={{
@@ -89,7 +68,7 @@ export default function Home() {
             }}
           >
             Étudiant BUT Informatique ·{" "}
-            <span style={{ color: "#3B82F6", fontWeight: 500 }}>Données & IA</span>
+            <span style={{ color: "#3B82F6", fontWeight: 500 }}>RAPP</span>
           </div>
         </FadeUp>
 

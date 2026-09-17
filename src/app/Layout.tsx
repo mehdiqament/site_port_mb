@@ -76,17 +76,6 @@ export default function Layout() {
     setMenuOpen(false)
   }, [location.pathname])
 
-  useEffect(() => {
-    if (location.pathname !== pageKey) {
-      setPageVisible(false)
-      const t = setTimeout(() => {
-        setPageKey(location.pathname)
-        setPageVisible(true)
-      }, 120)
-      return () => clearTimeout(t)
-    }
-  }, [location.pathname])
-
   return (
     <>
       <style>{GLOBAL_CSS}</style>
@@ -261,13 +250,10 @@ export default function Layout() {
 
         {/* Page content with cross-fade */}
         <main
-          key={pageKey}
-          style={{
+           style={{
             flex: 1,
-            opacity: pageVisible ? 1 : 0,
-            transition: "opacity 0.2s ease",
-          }}
-        >
+           }}
+          >
           <Outlet />
         </main>
 

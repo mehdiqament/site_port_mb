@@ -43,44 +43,12 @@ export function CodeButton({ href }: { href: string }) {
 export function FadeUp({
   children,
   className = "",
-  delay = 0,
-  entryDelay = 0,
 }: {
   children: React.ReactNode
   className?: string
-  delay?: number
-  entryDelay?: number
 }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [vis, setVis] = useState(false)
-
-  useEffect(() => {
-    const boot = setTimeout(() => {
-      const obs = new IntersectionObserver(
-        ([e]) => {
-          if (e.isIntersecting) {
-            setVis(true)
-            obs.disconnect()
-          }
-        },
-        { threshold: 0.08 }
-      )
-      if (ref.current) obs.observe(ref.current)
-      return () => obs.disconnect()
-    }, entryDelay)
-    return () => clearTimeout(boot)
-  }, [entryDelay])
-
   return (
-    <div
-      ref={ref}
-      className={className}
-      style={{
-        opacity: vis ? 1 : 0,
-        transform: vis ? "translateY(0)" : "translateY(22px)",
-        transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
-      }}
-    >
+    <div className={className}>
       {children}
     </div>
   )
@@ -126,20 +94,8 @@ export function PageContent({
   children: React.ReactNode
   style?: React.CSSProperties
 }) {
-  const [vis, setVis] = useState(false)
-  useEffect(() => {
-    const t = setTimeout(() => setVis(true), 30)
-    return () => clearTimeout(t)
-  }, [])
   return (
-    <div
-      style={{
-        opacity: vis ? 1 : 0,
-        transform: vis ? "translateY(0)" : "translateY(14px)",
-        transition: "opacity 0.55s cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.16,1,0.3,1)",
-        ...style,
-      }}
-    >
+    <div style={style}>
       {children}
     </div>
   )
@@ -230,12 +186,12 @@ export const timeline = [
     active: false,
   },
   {
-    year: "2026–27",
-    title: "BUT Informatique - 2ème année",
-    sub: "Spécialisation Données & IA",
-    desc: "Approfondissement en data engineering, machine learning et traitement de données massives.",
-    active: true,
-  },
+  year: "2026–27",
+  title: "BUT Informatique - 2ème année",
+  sub: "Parcours RAPP",
+  desc: "Réalisation d’applications : conception, développement et validation.",
+  active: true,
+},
 ]
 
 export const contacts = [

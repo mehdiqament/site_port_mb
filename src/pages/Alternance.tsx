@@ -305,7 +305,7 @@ export default function Alternance() {
                 Actuellement en BUT Informatique, je recherche une{" "}
                 <strong style={{ fontWeight: 600, color: "#0D0D0D" }}>alternance de 12 à 24 mois</strong>{" "}
                 axée sur le{" "}
-                <strong style={{ fontWeight: 600, color: "#0D0D0D" }}>développement logiciel ou les Données & IA</strong>.
+                <strong style={{ fontWeight: 600, color: "#0D0D0D" }}>développement logiciel dans le cadre du parcours RAPP</strong>.
                 Mon objectif est d'intégrer mes compétences techniques au sein d'une équipe passionnée pour relever des défis concrets, avec l'ambition d'évoluer vers un{" "}
                 <strong style={{ fontWeight: 600, color: "#0D0D0D" }}>CDI</strong>{" "}
                 à l'issue de ma formation.
@@ -347,7 +347,7 @@ export default function Alternance() {
           <FadeUp delay={160}>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem", minWidth: "14rem" }}>
               <InfoCard label="Durée recherchée" value="12 à 24 mois" />
-              <InfoCard label="Domaine" value="Dév. logiciel · Données & IA" />
+              <InfoCard label="Domaine" value="Développement logiciel · RAPP" />
               <InfoCard label="Localisation" value="Toulouse & région" />
               <InfoCard label="Disponibilité" value="Dès avril 2027" />
             </div>

@@ -23,7 +23,7 @@ export const translations = {
     home: {
       kicker: "portfolio · 2025–2026",
       role: "Étudiant BUT Informatique",
-      specialization: "Données & IA",
+      specialization: "Parcours RAPP",
       tagline: "Curieux et touche-à-tout, je construis mes compétences en data et développement.",
       ctaContact: "Me contacter",
       ctaSkills: "Voir mes compétences",
@@ -48,10 +48,10 @@ export const translations = {
       year1: "2025 - 2026",
       year1sub: "BUT Informatique - 1ère année",
       year2: "2026 - 2027",
-      year2sub: "BUT Informatique - 2ème année · Données & IA",
+      year2sub: "BUT Informatique - 2ème année · Parcours RAPP",
       comingSoonTitle: "Prochain projet",
       comingSoonBadge: "À venir",
-      comingSoonDesc: "Un nouveau projet arrivera lors de mon entrée en spécialisation Données & IA.",
+      comingSoonDesc: "De nouveaux projets réalisés dans le cadre du parcours RAPP arriveront prochainement.",
       sem1: "1er semestre",
       sem2: "2ème semestre",
       fromagerie: {

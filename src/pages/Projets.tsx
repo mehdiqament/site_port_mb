@@ -106,7 +106,7 @@ function ComingSoonCard({ year, badge }: { year: string; badge: string }) {
         </span>
       </div>
       <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#9ca3af", lineHeight: "1.65", margin: 0, flex: 1 }}>
-        Un nouveau projet arrivera lors de mon entrée en spécialisation Données & IA.
+        De nouveaux projets réalisés dans le cadre du parcours RAPP arriveront prochainement.
       </p>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
         {["-", "-", "-"].map((t, i) => <span key={i} style={TAG_MUTED_STYLE}>{t}</span>)}
@@ -162,7 +162,7 @@ export default function Projets() {
         </YearSection>
 
         {/* 2026-2027 */}
-        <YearSection year="2026 - 2027" sub="BUT Informatique - 2ème année · Données & IA">
+        <YearSection year="2026 - 2027" sub="BUT Informatique - 2ème année · Parcours RAPP">
           <ComingSoonCard year="2026-2027" badge="1er semestre" />
           <ComingSoonCard year="2026-2027" badge="2ème semestre" />
         </YearSection>
